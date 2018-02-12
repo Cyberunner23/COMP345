@@ -51,9 +51,44 @@ set(SRCS
     src/Map.hpp
     src/Map.cpp
     src/RegionNode.hpp
-    src/RegionNode.cpp
 )
 
+
+#------------------------------------------------------------------------------
+# Doxygen
+#------------------------------------------------------------------------------
+
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    message("Doxygen build started")
+
+    add_custom_target(doc
+        ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating documentation with Doxygen"
+        VERBATIM
+    )
+
+    add_custom_target(doc-clean
+        COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/doc/
+        COMMENT "Cleaning up documentation"
+        VERBATIM
+    )
+
+else(DOXYGEN_FOUND)
+    message("Doxygen must be installed in order to generate the documentation")
+endif(DOXYGEN_FOUND)
+
+
+#------------------------------------------------------------------------------
+# Executables
+#------------------------------------------------------------------------------
 
 add_executable(${PROJECT_NAME} ${SRCS} src/main.cpp)
 target_link_libraries(${PROJECT_NAME}
@@ -67,5 +102,6 @@ target_link_libraries(${PROJECT_NAME}
 add_executable(SerializationTest src/tests/SerializationTest.cpp ${SRCS})
 target_link_libraries(SerializationTest
     Boost::boost
+    Boost::graph
     Boost::serialization
 )

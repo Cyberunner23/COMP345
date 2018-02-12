@@ -7,7 +7,7 @@
 int main(int argc, char** argv)
 {
 
-    RegionNode node("hello", "peoplekind", std::list<int> {1, 2, 3, 4, 5});
+    RegionNode node("hello", "peoplekindpeoplekind", std::list<int> {1, 2, 3, 4, 5});
     std::ofstream oStream("test.thing");
     oStream << node;
 
@@ -15,5 +15,5 @@ int main(int argc, char** argv)
     RegionNode node2;
     iStream >> node2;
 
-    node2.print();
+    std::cout << node2;
 }

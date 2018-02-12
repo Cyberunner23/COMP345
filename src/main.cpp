@@ -1,99 +1,79 @@
 
+
+
+//refs: https://stackoverflow.com/questions/671714/modifying-vertex-properties-in-a-boostgraph
+//https://stackoverflow.com/questions/19360643/how-to-access-boost-subgraph-graph-properties
+
 #include <iostream>
 #include <memory>
-#include <string>
 #include <vector>
 
 #include "boost/graph/graph_traits.hpp"
-//#include "boost/graph/subgraph.hpp"
+#include "boost/graph/subgraph.hpp"
 #include "boost/graph/adjacency_list.hpp"
 #include <boost/graph/graphml.hpp>
 
-
-/*struct RegionNode
-{
-    std::string name;
-    std::string owner;
-    int tokens[100];
-};
-
-RegionNode node1;
-RegionNode node2;
-RegionNode node3;
-
-RegionNode regions[] = {
-        node1,
-        node2,
-        node3
-};
-
-enum ERegions
-{
-    REGION_1,
-    REGION_2,
-    REGION_3,
-    N
-};
-
-typedef std::pair<int, int> Edge;
-
-Edge links[] = {
-        Edge(REGION_1, REGION_2),
-        Edge(REGION_2, REGION_3),
-        Edge(REGION_3, REGION_1)
-};
-
-const int NEDGES = sizeof(links) / sizeof(Edge);
-
-typedef boost::adjacency_list< boost::vecS, boost::vecS, boost::directedS,
-boost::property< boost::vertex_color_t, RegionNode>
-> UGraph;
-
-UGraph gg(links, links + NEDGES, N);
-
-*/
-
-
-/*
-enum files_e { dax_h, yow_h, boz_h, zow_h, foo_cpp,
-    foo_o, bar_cpp, bar_o, libfoobar_a,
-    zig_cpp, zig_o, zag_cpp, zag_o,
-    libzigzag_a, killerapp, N };
-const char* name[] = { "dax.h", "yow.h", "boz.h", "zow.h", "foo.cpp",
-                       "foo.o", "bar.cpp", "bar.o", "libfoobar.a",
-                       "zig.cpp", "zig.o", "zag.cpp", "zag.o",
-                       "libzigzag.a", "killerapp" };
-Edge used_by[] = {
-        Edge(dax_h, foo_cpp), Edge(dax_h, bar_cpp), Edge(dax_h, yow_h),
-        Edge(yow_h, bar_cpp), Edge(yow_h, zag_cpp),
-        Edge(boz_h, bar_cpp), Edge(boz_h, zig_cpp), Edge(boz_h, zag_cpp),
-        Edge(zow_h, foo_cpp),
-        Edge(foo_cpp, foo_o),
-        Edge(foo_o, libfoobar_a),
-        Edge(bar_cpp, bar_o),
-        Edge(bar_o, libfoobar_a),
-        Edge(libfoobar_a, libzigzag_a),
-        Edge(zig_cpp, zig_o),
-        Edge(zig_o, libzigzag_a),
-        Edge(zag_cpp, zag_o),
-        Edge(zag_o, libzigzag_a),
-        Edge(libzigzag_a, killerapp)
-};
-
-const int nedges = sizeof(used_by)/sizeof(Edge);
-
-typedef boost::adjacency_list< boost::vecS, boost::vecS, boost::directedS,
-boost::property< boost::vertex_color_t, std::string >
-> Graph;*/
+#include "Map.hpp"
 
 
 int main(int argc, char** argv)
 {
 
-    //boost::dynamic_properties dp;
-    //dp.property("rhing", boost::get(boost::vertex_color_t(), gg));
+    SGraph main;
+    SGraph& s1 = main.create_subgraph();
+    SGraph& s2 = main.create_subgraph();
 
-    //boost::write_graphml(std::cout, gg, dp, true);
+    Vertex v = add_vertex(main);
+
+    typename boost::property_map<SGraph, vertex_data_t>::type param = get(vertex_data, main);
+    typename boost::property_map<SGraph, vertex_displaytxt_t>::type param2 = get(vertex_displaytxt, main);
+
+    param[v]._name = "hey";
+    param2[v] = "ha!\\nblahrg\\n type: eyy";
+
+    boost::dynamic_properties dp;
+    dp.property("node_id", boost::get(boost::vertex_index, main));
+    dp.property("label", boost::get(vertex_displaytxt, main));
+
+    boost::dynamic_properties dp2;
+    dp2.property("node", boost::get(vertex_data, main));
+
+
+    write_graphviz_dp(std::cout, main, dp);
+    //write_graphml(std::cout, main, dp2, true);
+
+    //ref_property_map<Vertex*, VertexData> prop(get_property(v, vertex_data));
+
+    //ref_property_map<SGraph*, vertex_data_t> param(get_property(main, vertex_data));
 
     return 0;
 }
+
+
+/*int main(int argc, char** argv)
+{
+
+
+
+    Map map;
+
+    RegionNode region1("sdf", "fds", std::list<int> {5, 4, 3, 6, 7});
+    RegionNode region2("asdfsadf", "sfdaasfd", std::list<int> {5, 4, 3, 6, 7});
+
+    auto node1 = map.addRegion(region1);
+    auto node2 = map.addRegion(region2);
+
+    auto edge1 = map.connectRegion(node1, node2);
+
+    if (!map.isConnected())
+    {
+        std::cout << "INVALID" << std::endl;
+        return 1;
+    }
+
+    //map.exportMap("hello.xml");
+    map.importMap("hello.xml");
+    map.exportMapGraphViz("hello.grz");
+
+    return 0;
+}*/
