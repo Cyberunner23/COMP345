@@ -115,7 +115,7 @@ public:
     //! \param region Region to be added to the subgraph.
     //! \param subGraph Subgraph that will contain region.
     //! \return The resulting Vertex object.
-    Vertex addRegion(const RegionNode& region, SGraph& subGraph);
+    Vertex addRegion(const Vertex& regionVertex, SGraph& subGraph);
 
     //! \brief Adds an edge between the provided region vertices
 

@@ -53,6 +53,12 @@ set(SRCS
     src/RegionNode.hpp
 )
 
+set(LIBS
+    Boost::boost
+    Boost::graph
+    Boost::serialization
+)
+
 
 #------------------------------------------------------------------------------
 # Doxygen
@@ -91,17 +97,19 @@ endif(DOXYGEN_FOUND)
 #------------------------------------------------------------------------------
 
 add_executable(${PROJECT_NAME} ${SRCS} src/main.cpp)
-target_link_libraries(${PROJECT_NAME}
-    Boost::boost
-    Boost::graph
-    Boost::serialization
-)
-
+target_link_libraries(${PROJECT_NAME} ${LIBS})
 
 # TESTS
 add_executable(SerializationTest src/tests/SerializationTest.cpp ${SRCS})
-target_link_libraries(SerializationTest
-    Boost::boost
-    Boost::graph
-    Boost::serialization
-)
+target_link_libraries(SerializationTest ${LIBS})
+
+add_executable(MapTest src/tests/MapTest.cpp ${SRCS})
+target_link_libraries(MapTest ${LIBS})
+
+
+#------------------------------------------------------------------------------
+# Test Data
+#------------------------------------------------------------------------------
+
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/TestData)
+configure_file(src/tests/data/InvalidSchema.map TestData/InvalidSchema.map COPYONLY)

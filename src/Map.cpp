@@ -49,21 +49,20 @@ SGraph& Map::createSubGraph(SGraph &subGraph)
 
 Vertex Map::addRegion(const RegionNode& region)
 {
-    return addRegion(region, _mainGraph);
-}
-
-Vertex Map::addRegion(const RegionNode& region, SGraph& subGraph)
-{
-
     Vertex v = boost::add_vertex(_mainGraph);
 
-    VertexDataPropertyMap dataMap = boost::get(vertex_data, subGraph);
-    VertexDisplaytxtPropertyMap displayMap = boost::get(vertex_displaytxt, subGraph);
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    VertexDisplaytxtPropertyMap displayMap = boost::get(vertex_displaytxt, _mainGraph);
 
-    dataMap[v] = region;
     displayMap[v] = region._name;
+    dataMap[v] = std::move(region);
 
     return v;
+}
+
+Vertex Map::addRegion(const Vertex& regionVertex, SGraph& subGraph)
+{
+    return boost::add_vertex(regionVertex, subGraph);
 }
 
 Edge Map::connectRegion(const Vertex& v1, const Vertex& v2)
