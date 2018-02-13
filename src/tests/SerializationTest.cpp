@@ -7,7 +7,7 @@
 int main(int argc, char** argv)
 {
 
-    RegionNode node("hello", "peoplekindpeoplekind", std::list<int> {1, 2, 3, 4, 5});
+    RegionNode node(RegionType::SEA, MapToken::NONE, RegionFeature::NONE, false);
     std::ofstream oStream("test.thing");
     oStream << node;
 

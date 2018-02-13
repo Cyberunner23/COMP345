@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="key0" for="node" attr.name="node" attr.type="string" />
+  <graph id="G" edgedefault="undirected" parse.nodeids="canonical" parse.edgeids="canonical" parse.order="nodesfirst">
+    <node id="n0">
+      <data key="key0">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
+&lt;!DOCTYPE boost_serialization&gt;
+&lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
+&lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
+	&lt;Type&gt;8&lt;/Type&gt;
+	&lt;Name&gt;a&lt;/Name&gt;
+	&lt;Owner&gt;alex&lt;/Owner&gt;
+	&lt;Tokens&gt;
+		&lt;count&gt;4&lt;/count&gt;
+		&lt;item_version&gt;0&lt;/item_version&gt;
+		&lt;item&gt;1&lt;/item&gt;
+		&lt;item&gt;2&lt;/item&gt;
+		&lt;item&gt;3&lt;/item&gt;
+		&lt;item&gt;4&lt;/item&gt;
+	&lt;/Tokens&gt;
+&lt;/RegionNode&gt;
+&lt;/boost_serialization&gt;
+
+</data>
+    </node>
+    <node id="n1">
+      <data key="key0">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
+&lt;!DOCTYPE boost_serialization&gt;
+&lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
+&lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
+	&lt;Type&gt;8&lt;/Type&gt;
+	&lt;Name&gt;b&lt;/Name&gt;
+	&lt;Owner&gt;alex&lt;/Owner&gt;
+	&lt;Tokens&gt;
+		&lt;count&gt;4&lt;/count&gt;
+		&lt;item_version&gt;0&lt;/item_version&gt;
+		&lt;item&gt;1&lt;/item&gt;
+		&lt;item&gt;2&lt;/item&gt;
+		&lt;item&gt;3&lt;/item&gt;
+		&lt;item&gt;4&lt;/item&gt;
+	&lt;/Tokens&gt;
+&lt;/RegionNode&gt;
+&lt;/boost_serialization&gt;
+
+</data>
+    </node>
+    <node id="n2">
+      <data key="key0">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
+&lt;!DOCTYPE boost_serialization&gt;
+&lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
+&lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
+	&lt;Type&gt;8&lt;/Type&gt;
+	&lt;Name&gt;c&lt;/Name&gt;
+	&lt;Owner&gt;alex&lt;/Owner&gt;
+	&lt;Tokens&gt;
+		&lt;count&gt;4&lt;/count&gt;
+		&lt;item_version&gt;0&lt;/item_version&gt;
+		&lt;item&gt;1&lt;/item&gt;
+		&lt;item&gt;2&lt;/item&gt;
+		&lt;item&gt;3&lt;/item&gt;
+		&lt;item&gt;4&lt;/item&gt;
+	&lt;/Tokens&gt;
+&lt;/RegionNode&gt;
+&lt;/boost_serialization&gt;
+
+</data>
+    </node>
+    <node id="n3">
+      <data key="key0">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
+&lt;!DOCTYPE boost_serialization&gt;
+&lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
+&lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
+	&lt;Type&gt;8&lt;/Type&gt;
+	&lt;Name&gt;d&lt;/Name&gt;
+	&lt;Owner&gt;alex&lt;/Owner&gt;
+	&lt;Tokens&gt;
+		&lt;count&gt;4&lt;/count&gt;
+		&lt;item_version&gt;0&lt;/item_version&gt;
+		&lt;item&gt;1&lt;/item&gt;
+		&lt;item&gt;2&lt;/item&gt;
+		&lt;item&gt;3&lt;/item&gt;
+		&lt;item&gt;4&lt;/item&gt;
+	&lt;/Tokens&gt;
+&lt;/RegionNode&gt;
+&lt;/boost_serialization&gt;
+
+</data>
+    </node>
+    <node id="n4">
+      <data key="key0">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
+&lt;!DOCTYPE boost_serialization&gt;
+&lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
+&lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
+	&lt;Type&gt;8&lt;/Type&gt;
+	&lt;Name&gt;e&lt;/Name&gt;
+	&lt;Owner&gt;alex&lt;/Owner&gt;
+	&lt;Tokens&gt;
+		&lt;count&gt;4&lt;/count&gt;
+		&lt;item_version&gt;0&lt;/item_version&gt;
+		&lt;item&gt;1&lt;/item&gt;
+		&lt;item&gt;2&lt;/item&gt;
+		&lt;item&gt;3&lt;/item&gt;
+		&lt;item&gt;4&lt;/item&gt;
+	&lt;/Tokens&gt;
+&lt;/RegionNode&gt;
+&lt;/boost_serialization&gt;
+
+</data>
+    </node>
+    <node id="n5">
+      <data key="key0">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
+&lt;!DOCTYPE boost_serialization&gt;
+&lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
+&lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
+	&lt;Type&gt;8&lt;/Type&gt;
+	&lt;Name&gt;f&lt;/Name&gt;
+	&lt;Owner&gt;alex&lt;/Owner&gt;
+	&lt;Tokens&gt;
+		&lt;count&gt;4&lt;/count&gt;
+		&lt;item_version&gt;0&lt;/item_version&gt;
+		&lt;item&gt;1&lt;/item&gt;
+		&lt;item&gt;2&lt;/item&gt;
+		&lt;item&gt;3&lt;/item&gt;
+		&lt;item&gt;4&lt;/item&gt;
+	&lt;/Tokens&gt;
+&lt;/RegionNode&gt;
+&lt;/boost_serialization&gt;
+
+</data>
+    </node>
+    <edge id="e0" source="n0" target="n1">
+    </edge>
+    <edge id="e1" source="n4" target="n5">
+    </edge>
+    <edge id="e2" source="n2" target="n5">
+    </edge>
+  </graph>
+</graphml>

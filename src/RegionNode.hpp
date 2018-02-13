@@ -11,18 +11,24 @@
 #include "boost/serialization/list.hpp"
 #include "boost/serialization/string.hpp"
 
-enum RegionType
+#include "Tokens.hpp"
+
+enum class RegionType
 {
-    CAVE,
     FARM,
     FOREST,
     HILL,
-    LOST_TRIBE,
-    MAGIC,
-    MINE,
+    MARSH,
     MOUNTAIN,
-    SEA,
-    SWAMP
+    SEA
+};
+
+enum class RegionFeature
+{
+    CAVERN,
+    MAGIC_SOURCE,
+    MINE,
+    NONE
 };
 
 struct RegionNode
@@ -41,7 +47,11 @@ public:
 
     //! Constructor used when deserializing map files. The friend classes
     //! will populate the member functions.
-    RegionNode() : _type(SEA)
+    RegionNode()
+            : _type(RegionType::SEA)
+            , _token(MapToken::NONE)
+            , _feature(RegionFeature::NONE)
+            , _isLostTribe(false)
     {}
 
     //! \brief Parameterized constructor
@@ -52,27 +62,29 @@ public:
     //! \param name Name of the region
     //! \param owner Owner of the region
     //! \param tokens Tokens placed on the region
-    RegionNode(std::string name, std::string owner, std::list<int> tokens)
-            : _type(SEA)
-            , _name(std::move(name))
-            , _owner(std::move(owner))
-            , _tokens(std::move(tokens))
+    RegionNode(RegionType type, MapToken token, RegionFeature feature, bool isLostTribe)
+            : _type(type)
+            , _token(token)
+            , _feature(feature)
+            , _isLostTribe(isLostTribe)
     {}
 
 private:
 
     RegionType _type;
+    MapToken _token;
+    RegionFeature _feature;
+    bool _isLostTribe;
 
-    std::string _owner;
-    std::list<int> _tokens;
+    std::list<RaceToken> _raceTokens;
 
     template <class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
-        ar & boost::serialization::make_nvp("Type", _type);
-        ar & boost::serialization::make_nvp("Name", _name);
-        ar & boost::serialization::make_nvp("Owner", _owner);
-        ar & boost::serialization::make_nvp("Tokens", _tokens);
+        ar & boost::serialization::make_nvp("RegionType", _type);
+        ar & boost::serialization::make_nvp("MapToken", _token);
+        ar & boost::serialization::make_nvp("RegionFeature", _feature);
+        ar & boost::serialization::make_nvp("IsLostTribe", _isLostTribe);
     }
 };
 

@@ -1,0 +1,11 @@
+graph G {
+0 [label=a];
+1 [label=b];
+2 [label=c];
+3 [label=d];
+4 [label=e];
+5 [label=f];
+0--1 ;
+4--5 ;
+2--5 ;
+}

@@ -13,7 +13,7 @@ bool Map::importMap(std::string fileName)
 
     boost::read_graphml(in, _mainGraph, dp);
 
-    return true;
+    return isConnected();
 }
 
 void Map::exportMap(std::string fileName)

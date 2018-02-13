@@ -48,9 +48,14 @@ find_package(Boost CONFIG REQUIRED graph serialization)
 #------------------------------------------------------------------------------
 
 set(SRCS
+    src/DiceRollingFacility.hpp
+    src/DiceRollingFacility.cpp
     src/Map.hpp
     src/Map.cpp
     src/RegionNode.hpp
+    src/GameDeck.hpp
+    src/GameDeck.cpp
+    src/Tokens.hpp
 )
 
 set(LIBS
@@ -106,6 +111,14 @@ target_link_libraries(SerializationTest ${LIBS})
 add_executable(MapTest src/tests/MapTest.cpp ${SRCS})
 target_link_libraries(MapTest ${LIBS})
 
+add_executable(MapLoadingTest src/tests/MapLoadingTest.cpp ${SRCS})
+target_link_libraries(MapLoadingTest ${LIBS})
+
+add_executable(DiceRollingFacilityTest src/tests/DiceRollingFacilityTest.cpp ${SRCS})
+target_link_libraries(DiceRollingFacilityTest ${LIBS})
+
+add_executable(TokenTest src/tests/TokenTest.cpp ${SRCS})
+target_link_libraries(TokenTest ${LIBS})
 
 #------------------------------------------------------------------------------
 # Test Data
@@ -113,3 +126,5 @@ target_link_libraries(MapTest ${LIBS})
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/TestData)
 configure_file(src/tests/data/InvalidSchema.map TestData/InvalidSchema.map COPYONLY)
+configure_file(src/tests/data/Map1.map TestData/Map1.map COPYONLY)
+configure_file(src/tests/data/Map2.map TestData/Map2.map COPYONLY)
