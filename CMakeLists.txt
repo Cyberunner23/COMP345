@@ -50,11 +50,13 @@ find_package(Boost CONFIG REQUIRED graph serialization)
 set(SRCS
     src/DiceRollingFacility.hpp
     src/DiceRollingFacility.cpp
-    src/Map.hpp
-    src/Map.cpp
-    src/RegionNode.hpp
     src/GameDeck.hpp
     src/GameDeck.cpp
+    src/Map.hpp
+    src/Map.cpp
+    src/Player.hpp
+    src/Player.cpp
+    src/RegionNode.hpp
     src/Tokens.hpp
 )
 
