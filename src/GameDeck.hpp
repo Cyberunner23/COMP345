@@ -3,8 +3,10 @@
 
 #include <algorithm>
 #include <iostream>
+#include <utility>
 #include <vector>
 
+#include "Map.hpp"
 #include "Tokens.hpp"
 
 class GameDeck
@@ -66,7 +68,7 @@ public:
 
         //Setup Race Tokens
         _raceTokens.insert(_raceTokens.end(), 15, RaceToken::AMAZON);
-        _raceTokens.insert(_raceTokens.end(), 8, RaceToken::DWARVE);
+        _raceTokens.insert(_raceTokens.end(), 8,  RaceToken::DWARVE);
         _raceTokens.insert(_raceTokens.end(), 11, RaceToken::ELVE);
         _raceTokens.insert(_raceTokens.end(), 10, RaceToken::GHOUL);
         _raceTokens.insert(_raceTokens.end(), 13, RaceToken::RATMEN);
@@ -105,6 +107,14 @@ public:
     unsigned int getRaceBannersTokenListSize() const;
     unsigned int getRaceTokensTokenListSize() const;
     unsigned int getCoinsTokenListSize() const;
+
+    std::vector<SpecialPower>* getSpecialPowersTokenList();
+    std::vector<MapToken>* getMapTokensTokenList();
+    std::vector<RaceBanner>* getRaceBannersTokenList();
+    std::vector<RaceToken>* getRaceTokensTokenList();
+    std::vector<VictoryCoin>* getCoinsTokenList();
+
+    void removeMapTokensAlreadyInMap(Map& map);
 
 private:
 

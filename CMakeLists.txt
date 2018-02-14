@@ -122,6 +122,9 @@ target_link_libraries(DiceRollingFacilityTest ${LIBS})
 add_executable(TokenTest src/tests/TokenTest.cpp ${SRCS})
 target_link_libraries(TokenTest ${LIBS})
 
+add_executable(PlayerTest src/tests/PlayerTest.cpp ${SRCS})
+target_link_libraries(PlayerTest ${LIBS})
+
 #------------------------------------------------------------------------------
 # Test Data
 #------------------------------------------------------------------------------
@@ -130,3 +133,5 @@ file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/TestData)
 configure_file(src/tests/data/InvalidSchema.map TestData/InvalidSchema.map COPYONLY)
 configure_file(src/tests/data/Map1.map TestData/Map1.map COPYONLY)
 configure_file(src/tests/data/Map2.map TestData/Map2.map COPYONLY)
+
+configure_file(docs/sw_help_en.pdf sw_help_en.pdf COPYONLY)

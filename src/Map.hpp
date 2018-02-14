@@ -52,6 +52,8 @@ typedef boost::subgraph<
 typedef typename boost::graph_traits<SGraph>::vertex_descriptor Vertex;
 typedef typename boost::graph_traits<SGraph>::edge_descriptor Edge;
 
+typedef typename boost::graph_traits<SGraph>::vertex_iterator VertexIterator;
+
 typedef typename boost::property_map<SGraph, vertex_data_t>::type VertexDataPropertyMap;
 typedef typename boost::property_map<SGraph, vertex_displaytxt_t>::type VertexDisplaytxtPropertyMap;
 
@@ -86,6 +88,13 @@ public:
     //! generating maps from code in order to visualize the final result.
     //! \param fileName Path of the file to be saved.
     void exportMapGraphViz(std::string fileName);
+
+
+    //! \brief Get the graph
+    SGraph* getGraph()
+    {
+        return &_mainGraph;
+    }
 
 
     //! \brief Creates a subgraph

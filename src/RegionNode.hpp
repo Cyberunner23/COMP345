@@ -33,15 +33,23 @@ enum class RegionFeature
 
 struct RegionNode
 {
+
+    std::string _name;
+
+    RegionType _type;
+    MapToken _token;
+    RegionFeature _feature;
+    bool _isLostTribe;
+
+    std::list<RaceToken> _raceTokens;
+
+
     //Serialization is my friend
     friend class boost::serialization::access;
     friend class boost::archive::save_access;
     friend inline std::ostream &operator<<(std::ostream &oStream, const RegionNode &regionNode);
     friend inline std::istream &operator>>(std::istream &iStream, RegionNode &regionNode);
 
-public:
-
-    std::string _name;
 
     //! \brief Default constructor
 
@@ -70,13 +78,6 @@ public:
     {}
 
 private:
-
-    RegionType _type;
-    MapToken _token;
-    RegionFeature _feature;
-    bool _isLostTribe;
-
-    std::list<RaceToken> _raceTokens;
 
     template <class Archive>
     void serialize(Archive &ar, const unsigned int version)

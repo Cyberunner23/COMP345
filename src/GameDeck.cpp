@@ -78,3 +78,44 @@ unsigned int GameDeck::getCoinsTokenListSize() const
     return (unsigned int)_coins.size();
 }
 
+
+std::vector<SpecialPower>* GameDeck::getSpecialPowersTokenList()
+{
+    return &_specialPowers;
+}
+
+std::vector<MapToken>* GameDeck::getMapTokensTokenList()
+{
+    return &_mapTokens;
+}
+
+std::vector<RaceBanner>* GameDeck::getRaceBannersTokenList()
+{
+    return &_raceBanners;
+}
+
+std::vector<RaceToken>* GameDeck::getRaceTokensTokenList()
+{
+    return &_raceTokens;
+}
+
+std::vector<VictoryCoin>* GameDeck::getCoinsTokenList()
+{
+    return &_coins;
+}
+
+
+void GameDeck::removeMapTokensAlreadyInMap(Map& map)
+{
+    SGraph* graph = map.getGraph();
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, *graph);
+
+    std::pair<VertexIterator, VertexIterator> vp;
+
+    for (vp = boost::vertices(*graph); vp.first != vp.second; ++vp.first)
+    {
+        MapToken token;
+        takeToken(dataMap[*vp.first]._token, token);
+    }
+}
+
