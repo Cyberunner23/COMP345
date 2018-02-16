@@ -125,6 +125,9 @@ target_link_libraries(TokenTest ${LIBS})
 add_executable(PlayerTest src/tests/PlayerTest.cpp ${SRCS})
 target_link_libraries(PlayerTest ${LIBS})
 
+add_executable(MapGen src/tests/MapGen.cpp ${SRCS})
+target_link_libraries(MapGen ${LIBS})
+
 #------------------------------------------------------------------------------
 # Test Data
 #------------------------------------------------------------------------------

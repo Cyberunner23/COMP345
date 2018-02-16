@@ -38,7 +38,7 @@ struct RegionNode
 
     RegionType _type;
     MapToken _token;
-    RegionFeature _feature;
+    std::list<RegionFeature> _feature;
     bool _isLostTribe;
 
     std::list<RaceToken> _raceTokens;
@@ -58,7 +58,7 @@ struct RegionNode
     RegionNode()
             : _type(RegionType::SEA)
             , _token(MapToken::NONE)
-            , _feature(RegionFeature::NONE)
+            , _feature(std::list<RegionFeature>{RegionFeature::NONE})
             , _isLostTribe(false)
     {}
 
@@ -70,7 +70,7 @@ struct RegionNode
     //! \param name Name of the region
     //! \param owner Owner of the region
     //! \param tokens Tokens placed on the region
-    RegionNode(RegionType type, MapToken token, RegionFeature feature, bool isLostTribe)
+    RegionNode(RegionType type, MapToken token, std::list<RegionFeature> feature, bool isLostTribe)
             : _type(type)
             , _token(token)
             , _feature(feature)
