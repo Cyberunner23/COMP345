@@ -20,11 +20,11 @@ int main(int argc, char** argv)
     std::cout << std::endl;
 
     std::cout << "Importing map \"Map1.map\"... Should Succeed." << std::endl;
-    std::cout << "Import " << (map1.importMap("TestData/Map1.map") ? "SUCCEEDED" : "FAILED") << std::endl;
+    std::cout << "Import " << (map1.importMap("TestData/2player.map") ? "SUCCEEDED" : "FAILED") << std::endl;
     std::cout << std::endl;
 
     std::cout << "Importing map \"Map2.map\"... Should Fail." << std::endl;
-    std::cout << "Import " << (map2.importMap("TestData/Map2.map") ? "SUCCEEDED" : "FAILED") << std::endl;
+    std::cout << "Import " << (map2.importMap("TestData/2player_invalid.map") ? "SUCCEEDED" : "FAILED") << std::endl;
     std::cout << std::endl;
 
     return 0;

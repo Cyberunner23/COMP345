@@ -56,11 +56,11 @@ int main(int argc, char** argv)
         Vertex v22 = map.addRegion(r22);
         Vertex v23 = map.addRegion(r23);
 
-        map.connectRegion(v1, v2);
+        //map.connectRegion(v1, v2);
         map.connectRegion(v2, v3);
         map.connectRegion(v3, v4);
         map.connectRegion(v4, v5);
-        map.connectRegion(v1, v6);
+        //map.connectRegion(v1, v6);
         map.connectRegion(v2, v6);
         map.connectRegion(v6, v7);
         map.connectRegion(v7, v2);
@@ -107,7 +107,7 @@ int main(int argc, char** argv)
         map.connectRegion(v22, v23);
         map.connectRegion(v23, v21);
 
-        assert(map.isConnected());
+        //assert(map.isConnected());
 
         map.exportMap("2player.map");
         map.exportMapGraphViz("2player.viz");

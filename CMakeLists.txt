@@ -134,7 +134,9 @@ target_link_libraries(MapGen ${LIBS})
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/TestData)
 configure_file(src/tests/data/InvalidSchema.map TestData/InvalidSchema.map COPYONLY)
-configure_file(src/tests/data/Map1.map TestData/Map1.map COPYONLY)
-configure_file(src/tests/data/Map2.map TestData/Map2.map COPYONLY)
+configure_file(src/tests/data/2player.map TestData/2player.map COPYONLY)
+configure_file(src/tests/data/2player.viz TestData/2player.viz COPYONLY)
+configure_file(src/tests/data/2player_invalid.map TestData/2player_invalid.map COPYONLY)
+configure_file(src/tests/data/2player_invalid.viz TestData/2player_invalid.viz COPYONLY)
 
 configure_file(docs/sw_help_en.pdf sw_help_en.pdf COPYONLY)
