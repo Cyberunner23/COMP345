@@ -1,6 +1,7 @@
 
 #pragma once
 
+//! MapToken: Environmental tokens that are initially placed on the map
 enum class MapToken
 {
     TROLL_LAIR,
@@ -14,6 +15,7 @@ enum class MapToken
     EMPTY
 };
 
+//! RaceBanner: Banners representing the races
 enum class RaceBanner
 {
     AMAZON,
@@ -33,6 +35,7 @@ enum class RaceBanner
     EMPTY
 };
 
+//! RaceToken: Tokens Representing the races that can be deployed onto the map
 enum class RaceToken
 {
     AMAZON,
@@ -53,6 +56,7 @@ enum class RaceToken
     EMPTY
 };
 
+//! SpecialPower: Special power that can be added to the race banner.
 enum class SpecialPower
 {
     ALCHEMIST,
@@ -79,6 +83,7 @@ enum class SpecialPower
     EMPTY
 };
 
+//! VictoryCoin: The cins that player can earn
 enum class VictoryCoin
 {
     VAL_1,
@@ -88,6 +93,11 @@ enum class VictoryCoin
     EMPTY
 };
 
+//! \brief Gets the token as a printable string
+
+//! Gets a printable string for a MapToken
+//! \param token The token to be printed
+//! \return String value of the token
 inline std::string getTokenString(const MapToken& token)
 {
     switch (token)
@@ -113,6 +123,11 @@ inline std::string getTokenString(const MapToken& token)
     }
 }
 
+//! \brief Gets the token as a printable string
+
+//! Gets a printable string for a RaceBanner
+//! \param token The token to be printed
+//! \return String value of the token
 inline std::string getTokenString(const RaceBanner& token)
 {
     switch (token)
@@ -150,6 +165,11 @@ inline std::string getTokenString(const RaceBanner& token)
     }
 }
 
+//! \brief Gets the token as a printable string
+
+//! Gets a printable string for a RaceToken
+//! \param token The token to be printed
+//! \return String value of the token
 inline std::string getTokenString(const RaceToken& token)
 {
     switch (token)
@@ -189,6 +209,11 @@ inline std::string getTokenString(const RaceToken& token)
     }
 }
 
+//! \brief Gets the token as a printable string
+
+//! Gets a printable string for a SpecialPower
+//! \param token The token to be printed
+//! \return String value of the token
 inline std::string getTokenString(const SpecialPower& token)
 {
     switch (token)
@@ -240,6 +265,11 @@ inline std::string getTokenString(const SpecialPower& token)
     }
 }
 
+//! \brief Gets the token as a printable string
+
+//! Gets a printable string for a VictoryCoin
+//! \param token The token to be printed
+//! \return String value of the token
 inline std::string getTokenString(const VictoryCoin& token)
 {
     switch (token)

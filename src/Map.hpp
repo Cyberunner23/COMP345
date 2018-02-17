@@ -22,22 +22,29 @@
 #include "RegionNode.hpp"
 
 
+//! Custom property for vertex data
 enum vertex_data_t
 {
     vertex_data
 };
 
+//! Custom property for the display text.
+//! Will be used to display text in the cells in the graphviz export
 enum vertex_displaytxt_t
 {
     vertex_displaytxt
 };
 
+// Registering the new properties
 namespace boost
 {
     BOOST_INSTALL_PROPERTY(vertex, data);
     BOOST_INSTALL_PROPERTY(vertex, displaytxt);
 }
 
+//! The graph. Uses BGL.
+//! Created a graph with an adjacency list implementation.
+//! It includes the custom properties I defined above.
 typedef boost::subgraph<
         boost::adjacency_list<
                 boost::vecS,
@@ -49,15 +56,22 @@ typedef boost::subgraph<
                 boost::property<boost::edge_index_t, int>
         >> SGraph;
 
+//! Type for the vertices
 typedef typename boost::graph_traits<SGraph>::vertex_descriptor Vertex;
+//! Type for the edges
 typedef typename boost::graph_traits<SGraph>::edge_descriptor Edge;
 
+//! Type for the vertex iterator, used to go through the list of vertices
 typedef typename boost::graph_traits<SGraph>::vertex_iterator VertexIterator;
 
+//! Type for the PropertyMap of the vertex data.
+//! Used to extract the node data.
 typedef typename boost::property_map<SGraph, vertex_data_t>::type VertexDataPropertyMap;
+//! Type for the PropertyMap of the displaytxt, used to get/set the data to be displlayed in the graphVis output.
 typedef typename boost::property_map<SGraph, vertex_displaytxt_t>::type VertexDisplaytxtPropertyMap;
 
 
+//! Main map class
 class Map
 {
 

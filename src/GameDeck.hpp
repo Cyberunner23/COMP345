@@ -9,11 +9,15 @@
 #include "Map.hpp"
 #include "Tokens.hpp"
 
+
+//! Class for the game deck.
+//! Simulates an actual deck where a person can take out and place back a card/token
 class GameDeck
 {
 
 public:
 
+    //! Constructor for the Game Deck, initializes the deck with all the tkens.
     GameDeck()
     {
 
@@ -90,34 +94,56 @@ public:
         _coins.insert(_coins.end(), 30, VictoryCoin::VAL_10);
     }
 
+    //! Takes a token from the deck
     bool takeToken(const SpecialPower& valueKind, SpecialPower& value);
+    //! Takes a token from the deck
     bool takeToken(const MapToken& valueKind, MapToken& value);
+    //! Takes a token from the deck
     bool takeToken(const RaceBanner& valueKind, RaceBanner& value);
+    //! Takes a token from the deck
     bool takeToken(const RaceToken& valueKind, RaceToken& value);
+    //! Takes a token from the deck
     bool takeToken(const VictoryCoin& valueKind, VictoryCoin& value);
 
+    //! Place back a token from the deck
     bool placeToken(SpecialPower& value);
+    //! Place back a token from the deck
     bool placeToken(MapToken& value);
+    //! Place back a token from the deck
     bool placeToken(RaceBanner& value);
+    //! Place back a token from the deck
     bool placeToken(RaceToken& value);
+    //! Place back a token from the deck
     bool placeToken(VictoryCoin& value);
 
+    //! Gets size / total number of tokens
     unsigned int getSpecialPowersTokenListSize() const;
+    //! Gets size / total number of tokens
     unsigned int getMapTokensTokenListSize() const;
+    //! Gets size / total number of tokens
     unsigned int getRaceBannersTokenListSize() const;
+    //! Gets size / total number of tokens
     unsigned int getRaceTokensTokenListSize() const;
+    //! Gets size / total number of tokens
     unsigned int getCoinsTokenListSize() const;
 
+    //! Gets a pointer to the internal vector of tokens
     std::vector<SpecialPower>* getSpecialPowersTokenList();
+    //! Gets a pointer to the internal vector of tokens
     std::vector<MapToken>* getMapTokensTokenList();
+    //! Gets a pointer to the internal vector of tokens
     std::vector<RaceBanner>* getRaceBannersTokenList();
+    //! Gets a pointer to the internal vector of tokens
     std::vector<RaceToken>* getRaceTokensTokenList();
+    //! Gets a pointer to the internal vector of tokens
     std::vector<VictoryCoin>* getCoinsTokenList();
 
+    //! Deletes the tokens from the deck that are already on the map due to the deserialization
     void removeMapTokensAlreadyInMap(Map& map);
 
 private:
 
+    //! Templated implementation of the take token function
     template <typename TokenType>
     bool TakeTokenImpl(const TokenType& valueKind, TokenType& value, std::vector<TokenType>& var)
     {
@@ -140,7 +166,7 @@ private:
         return true;
     }
 
-    template <typename TokenType>
+    //! Templated implementation of the place back token    template <typename TokenType>
     bool PlaceTokenImpl(TokenType& value, std::vector<TokenType>& var)
     {
         auto it = std::find(var.begin(), var.end(), TokenType::EMPTY);

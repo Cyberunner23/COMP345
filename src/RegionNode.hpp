@@ -79,6 +79,7 @@ struct RegionNode
 
 private:
 
+    //! Serialization function
     template <class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
@@ -90,6 +91,10 @@ private:
 };
 
 
+//! Operator overload for ostream
+//! \param oStream Stream to sent data to
+//! \param regionNode Node to be sent into the stream
+//! \return The original ostream
 std::ostream &operator<<(std::ostream &oStream, const RegionNode &regionNode)
 {
     boost::archive::xml_oarchive oArchive(oStream);
@@ -98,6 +103,10 @@ std::ostream &operator<<(std::ostream &oStream, const RegionNode &regionNode)
     return oStream;
 }
 
+//! Operator overload for istream
+//! \param iStream Stream to get data from
+//! \param regionNode Node to put data into
+//! \return The original istream
 std::istream &operator>>(std::istream &iStream, RegionNode &regionNode)
 {
     boost::archive::xml_iarchive iArchive(iStream);
@@ -105,4 +114,3 @@ std::istream &operator>>(std::istream &iStream, RegionNode &regionNode)
 
     return iStream;
 }
-

@@ -13,6 +13,9 @@ class Player
 
 public:
 
+    //! Contructor for the player
+    //! \param map A pointer to the map
+    //! \param gameDeck A poointer to the Game Deck
     Player(std::shared_ptr<Map> map, std::shared_ptr<GameDeck> gameDeck)
             : _ownedRegions(map->createSubGraph())
             , _map(std::move(map))
@@ -21,19 +24,31 @@ public:
             , _currentSpecialPower(SpecialPower::EMPTY)
     {}
 
-    void picks_race(){std::cout << "called: picks_race(), here is a value of the dice " << _dice.getDiceValue(1)[0] << std::endl;}
-    void conquers(){std::cout << "called: conquers()" << std::endl;}
-    void scores(){std::cout << "called: scores()" << std::endl;}
+    //! Lets user pick a race.
+    void picks_race();
 
-    std::vector<RaceToken>* getRaceTokens() {return &_raceTokens;}
-    std::vector<VictoryCoin>* getCoins() {return &_coins;}
-    RaceBanner* getRaceBanner() {return &_currentRace;}
-    SpecialPower* getSpecialPower() {return &_currentSpecialPower;}
+    //! Lets the user conquer a region.
+    void conquers();
 
-    unsigned int getOwnedRegionCount()
-    {
-        return (unsigned int)boost::num_vertices(_ownedRegions);
-    }
+    //! Gets the user's score.
+    void scores();
+
+
+    //! Gets a pointer to the player's race token vector.
+    std::vector<RaceToken>* getRaceTokens();
+
+    //! Gets a pointer to the player's vicotry token vector.
+    std::vector<VictoryCoin>* getCoins();
+
+    //! Gets a pointher to the player's current race banner.
+    RaceBanner* getRaceBanner();
+
+    //!Gets a pointer to the player's current special power.
+    SpecialPower* getSpecialPower();
+
+
+    //! Get number of regions that the player owns
+    unsigned int getOwnedRegionCount();
 
 
 private:
@@ -50,8 +65,5 @@ private:
 
     std::string _summarySheet = "sw_help_en.pdf";
 
-
     DiceRollingFacility _dice;
-
-
 };
