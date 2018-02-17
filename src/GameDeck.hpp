@@ -166,7 +166,8 @@ private:
         return true;
     }
 
-    //! Templated implementation of the place back token    template <typename TokenType>
+    //! Templated implementation of the place back token
+    template <typename TokenType>
     bool PlaceTokenImpl(TokenType& value, std::vector<TokenType>& var)
     {
         auto it = std::find(var.begin(), var.end(), TokenType::EMPTY);
