@@ -14,9 +14,9 @@ bool Map::importMap(std::string fileName)
 
     std::ifstream in(fileName);
     boost::dynamic_properties dp;
-    boost::ref_property_map<SGraph*, MapProperties> test(boost::get_property(_mainGraph, graph_info));
+    boost::ref_property_map<SGraph*, MapProperties> mapProperties(boost::get_property(_mainGraph, graph_info));
     dp.property("node", boost::get(vertex_data, _mainGraph));
-    dp.property("info", test);
+    dp.property("info", mapProperties);
 
 
     boost::read_graphml(in, _mainGraph, dp);
@@ -28,9 +28,9 @@ void Map::exportMap(std::string fileName)
 {
     std::ofstream out(fileName);
     boost::dynamic_properties dp;
-    boost::ref_property_map<SGraph*, MapProperties> test(boost::get_property(_mainGraph, graph_info));
+    boost::ref_property_map<SGraph*, MapProperties> mapProperties(boost::get_property(_mainGraph, graph_info));
     dp.property("node", boost::get(vertex_data, _mainGraph));
-    dp.property("info", test);
+    dp.property("info", mapProperties);
 
     boost::write_graphml(out, _mainGraph, dp, true);
 }
