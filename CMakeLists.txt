@@ -81,6 +81,7 @@ set(SRCS
     src/GraphView.cpp
     src/Map.hpp
     src/Map.cpp
+    src/MapProperties.hpp
     src/Player.hpp
     src/Player.cpp
     src/RegionNode.hpp
