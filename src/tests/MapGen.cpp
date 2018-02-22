@@ -7,7 +7,7 @@ int main(int argc, char** argv)
 
     // 2 Player
     {
-        Map map;
+        Map map(10);
 
         RegionNode r1 (RegionType::SEA,      MapToken::NONE,     {RegionFeature::NONE},   false);
         RegionNode r2 (RegionType::FARM,     MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, false);
@@ -117,7 +117,7 @@ int main(int argc, char** argv)
 
     // 3 Player
     {
-        Map map;
+        Map map(10);
 
         RegionNode regions[] = {
             /*0*/  RegionNode(), // index offset
@@ -244,7 +244,7 @@ int main(int argc, char** argv)
 
     { // 4 player
 
-        Map map;
+        Map map(9);
 
         RegionNode regions[] = {
                 /*0*/   RegionNode(), // index offset
@@ -436,7 +436,7 @@ int main(int argc, char** argv)
 
 
     { //5 player
-        Map map;
+        Map map(8);
 
         RegionNode regions[] = {
                 /*0*/   RegionNode(), // index offset

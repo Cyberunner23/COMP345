@@ -1,12 +1,23 @@
 
 #include "Map.hpp"
 
+
+Map::Map(unsigned int numTurns)
+{
+    boost::get_property(_mainGraph, graph_info).numTurns = numTurns;
+    boost::get_property(_mainGraph, graph_info).currentTurn = 1;
+}
+
+
 bool Map::importMap(std::string fileName)
 {
 
     std::ifstream in(fileName);
     boost::dynamic_properties dp;
+    boost::ref_property_map<SGraph*, MapProperties> test(boost::get_property(_mainGraph, graph_info));
     dp.property("node", boost::get(vertex_data, _mainGraph));
+    dp.property("info", test);
+
 
     boost::read_graphml(in, _mainGraph, dp);
 
@@ -17,7 +28,9 @@ void Map::exportMap(std::string fileName)
 {
     std::ofstream out(fileName);
     boost::dynamic_properties dp;
+    boost::ref_property_map<SGraph*, MapProperties> test(boost::get_property(_mainGraph, graph_info));
     dp.property("node", boost::get(vertex_data, _mainGraph));
+    dp.property("info", test);
 
     boost::write_graphml(out, _mainGraph, dp, true);
 }
@@ -42,6 +55,17 @@ void Map::exportMapGraphViz(std::string fileName)
     dp.property("label", boost::get(boost::vertex_index, _mainGraph));
 
     boost::write_graphviz_dp(out, _mainGraph, dp);
+}
+
+
+unsigned int Map::getMapNumTurns()
+{
+    return boost::get_property(_mainGraph, graph_info).numTurns;
+}
+
+unsigned int Map::incrementCurrentTurn()
+{
+    return ++boost::get_property(_mainGraph, graph_info).currentTurn;
 }
 
 

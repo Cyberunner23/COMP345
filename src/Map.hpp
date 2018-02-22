@@ -20,6 +20,12 @@
 #include "boost/graph/subgraph.hpp"
 #include "boost/graph/properties.hpp"
 
+#include "boost/archive/xml_iarchive.hpp"
+#include "boost/archive/xml_oarchive.hpp"
+#include "boost/serialization/list.hpp"
+#include "boost/serialization/string.hpp"
+
+#include "MapProperties.hpp"
 #include "RegionNode.hpp"
 
 
@@ -36,11 +42,23 @@ enum vertex_displaytxt_t
     vertex_displaytxt
 };
 
+enum graph_info_t
+{
+    graph_info
+};
+
+enum graph_info2_t
+{
+    graph_info2
+};
+
 // Registering the new properties
 namespace boost
 {
     BOOST_INSTALL_PROPERTY(vertex, data);
     BOOST_INSTALL_PROPERTY(vertex, displaytxt);
+    BOOST_INSTALL_PROPERTY(graph, info);
+    BOOST_INSTALL_PROPERTY(graph, info2);
 }
 
 //! The graph. Uses BGL.
@@ -51,10 +69,14 @@ typedef boost::subgraph<
                 boost::vecS,
                 boost::vecS,
                 boost::undirectedS,
+
                 boost::property<boost::vertex_index_t, int,
                 boost::property<vertex_data_t, RegionNode,
                 boost::property<vertex_displaytxt_t, std::string>>>,
-                boost::property<boost::edge_index_t, int>
+
+                boost::property<boost::edge_index_t, int>,
+
+                boost::property<graph_info_t, MapProperties>
         >> SGraph;
 
 //! Type for the vertices
@@ -80,6 +102,7 @@ public:
 
     //! Map constructor
     Map() = default;
+    explicit Map(unsigned int numTurns);
 
 
     //! \brief Loads a map
@@ -112,6 +135,11 @@ public:
     {
         return &_mainGraph;
     }
+
+    //! \brief Gets the number of turns for the map
+    unsigned int getMapNumTurns();
+    //! \brief Incerments the current turn counter and returns the new value
+    unsigned int incrementCurrentTurn();
 
 
     //! \brief Creates a subgraph
