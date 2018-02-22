@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     Map map;
     GraphView* view = new GraphView;
 
-    map.importMap("TestData/2player.map");
+    map.importMap("data/5player.map");
 
 
     QWidget* w = new QWidget;

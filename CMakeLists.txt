@@ -178,5 +178,7 @@ configure_file(data/3player.map data/3player.map COPYONLY)
 configure_file(data/3player.viz data/3player.viz COPYONLY)
 configure_file(data/4player.map data/4player.map COPYONLY)
 configure_file(data/4player.viz data/4player.viz COPYONLY)
+configure_file(data/5player.map data/5player.map COPYONLY)
+configure_file(data/5player.viz data/5player.viz COPYONLY)
 
 configure_file(docs/sw_help_en.pdf sw_help_en.pdf COPYONLY)
