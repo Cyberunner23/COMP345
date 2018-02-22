@@ -22,6 +22,18 @@ void Map::exportMap(std::string fileName)
     boost::write_graphml(out, _mainGraph, dp, true);
 }
 
+std::string Map::exportMapGraphViz()
+{
+    std::ostringstream out;
+    boost::dynamic_properties dp;
+    dp.property("node_id", boost::get(boost::vertex_index, _mainGraph));
+    dp.property("label", boost::get(boost::vertex_index, _mainGraph));
+
+    boost::write_graphviz_dp(out, _mainGraph, dp);
+
+    return out.str();
+}
+
 void Map::exportMapGraphViz(std::string fileName)
 {
     std::ofstream out(fileName);

@@ -8,6 +8,7 @@
 
 #include <fstream>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -95,6 +96,8 @@ public:
     //! generating maps from code.
     //! \param fileName Path of the file to be saved.
     void exportMap(std::string fileName);
+
+    std::string exportMapGraphViz();
 
     //! \bfief Exports a map in GraphViz format.
 

@@ -24,6 +24,7 @@ endif()
 
 include("cmake/HunterGate.cmake")
 
+
 HunterGate(
     URL "https://github.com/ruslo/hunter/archive/v0.19.245.tar.gz"
     SHA1 "34c8f443ef188adc5b3f0106ec5b06999164e1c8"
@@ -40,8 +41,32 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 # Hunter Packages
 #------------------------------------------------------------------------------
 
+#Boost serialization
 hunter_add_package(Boost COMPONENTS graph serialization)
 find_package(Boost CONFIG REQUIRED graph serialization)
+
+
+#------------------------------------------------------------------------------
+# Other dependencies
+#------------------------------------------------------------------------------
+
+# Qt5Core and Qt5Widgets
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Svg REQUIRED)
+
+set(CMAKE_AUTOMOC ON)
+
+
+# GraphViz
+include("cmake/FindGraphViz.cmake")
+
+if (NOT GRAPHVIZ_FOUND)
+    message(FATAL_ERROR "GraphViz must be installed on the system!!")
+endif()
+
+include_directories(${GRAPHVIZ_INCLUDE_DIRS})
+
 
 #------------------------------------------------------------------------------
 # Source files
@@ -52,6 +77,8 @@ set(SRCS
     src/DiceRollingFacility.cpp
     src/GameDeck.hpp
     src/GameDeck.cpp
+    src/GraphView.hpp
+    src/GraphView.cpp
     src/Map.hpp
     src/Map.cpp
     src/Player.hpp
@@ -64,6 +91,12 @@ set(LIBS
     Boost::boost
     Boost::graph
     Boost::serialization
+    ${GRAPHVIZ_CGRAPH_LIBRARY}
+    ${GRAPHVIZ_GVC_LIBRARY}
+    ${GRAPHVIZ_CDT_LIBRARY}
+    Qt5::Core
+    Qt5::Widgets
+    Qt5::Svg
 )
 
 
@@ -138,5 +171,12 @@ configure_file(src/tests/data/2player.map TestData/2player.map COPYONLY)
 configure_file(src/tests/data/2player.viz TestData/2player.viz COPYONLY)
 configure_file(src/tests/data/2player_invalid.map TestData/2player_invalid.map COPYONLY)
 configure_file(src/tests/data/2player_invalid.viz TestData/2player_invalid.viz COPYONLY)
+
+configure_file(data/2player.map data/2player.map COPYONLY)
+configure_file(data/2player.viz data/2player.viz COPYONLY)
+configure_file(data/3player.map data/3player.map COPYONLY)
+configure_file(data/3player.viz data/3player.viz COPYONLY)
+configure_file(data/4player.map data/4player.map COPYONLY)
+configure_file(data/4player.viz data/4player.viz COPYONLY)
 
 configure_file(docs/sw_help_en.pdf sw_help_en.pdf COPYONLY)

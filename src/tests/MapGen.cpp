@@ -5,6 +5,7 @@
 int main(int argc, char** argv)
 {
 
+    // 2 Player
     {
         Map map;
 
@@ -56,11 +57,11 @@ int main(int argc, char** argv)
         Vertex v22 = map.addRegion(r22);
         Vertex v23 = map.addRegion(r23);
 
-        //map.connectRegion(v1, v2);
+        map.connectRegion(v1, v2);
         map.connectRegion(v2, v3);
         map.connectRegion(v3, v4);
         map.connectRegion(v4, v5);
-        //map.connectRegion(v1, v6);
+        map.connectRegion(v1, v6);
         map.connectRegion(v2, v6);
         map.connectRegion(v6, v7);
         map.connectRegion(v7, v2);
@@ -107,10 +108,330 @@ int main(int argc, char** argv)
         map.connectRegion(v22, v23);
         map.connectRegion(v23, v21);
 
-        //assert(map.isConnected());
+        assert(map.isConnected());
 
         map.exportMap("2player.map");
         map.exportMapGraphViz("2player.viz");
+    }
+
+
+    // 3 Player
+    {
+        Map map;
+
+        RegionNode regions[] = {
+            /*0*/  RegionNode(), // index offset
+            /*1*/  RegionNode(RegionType::SEA,      MapToken::NONE,     {RegionFeature::NONE},   false),
+            /*2*/  RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::MINE},   false),
+            /*3*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+            /*4*/  RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   false),
+            /*5*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::CAVERN}, false),
+            /*6*/  RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::NONE},   true),
+            /*7*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::MINE},   false),
+            /*8*/  RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, true),
+            /*9*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::NONE},   false),
+            /*10*/ RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, true),
+            /*11*/ RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::MINE},   false),
+            /*12*/ RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   true),
+            /*13*/ RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false),
+            /*14*/ RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::NONE},   true),
+            /*15*/ RegionNode(RegionType::SEA,      MapToken::NONE,     {RegionFeature::NONE},   false),
+            /*16*/ RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::CAVERN}, false),
+            /*17*/ RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, false),
+            /*18*/ RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+            /*19*/ RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, false),
+            /*20*/ RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::CAVERN}, true),
+            /*21*/ RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::NONE},   false),
+            /*22*/ RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, true),
+            /*23*/ RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   true),
+            /*24*/ RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::NONE},   false),
+            /*25*/ RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+            /*26*/ RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+            /*27*/ RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::NONE},   false),
+            /*28*/ RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::MINE},   true),
+            /*29*/ RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::CAVERN}, true),
+            /*30*/ RegionNode(RegionType::SEA,      MapToken::NONE,     {RegionFeature::NONE},   false),
+        };
+
+
+        Vertex v[31];
+        for (int i = 1; i < 31; i++)
+        {
+            v[i] = map.addRegion(regions[i]);
+        }
+
+        map.connectRegion(v[1], v[2]);
+        map.connectRegion(v[2], v[3]);
+        map.connectRegion(v[3], v[4]);
+        map.connectRegion(v[4], v[5]);
+        map.connectRegion(v[5], v[6]);
+        map.connectRegion(v[6], v[7]);
+
+        map.connectRegion(v[1],  v[8]);
+        map.connectRegion(v[8],  v[9]);
+        map.connectRegion(v[9],  v[10]);
+        map.connectRegion(v[10], v[11]);
+        map.connectRegion(v[11], v[12]);
+        map.connectRegion(v[12], v[7]);
+        map.connectRegion(v[8],  v[2]);
+        map.connectRegion(v[9],  v[2]);
+        map.connectRegion(v[9],  v[3]);
+        map.connectRegion(v[10], v[3]);
+        map.connectRegion(v[10], v[4]);
+        map.connectRegion(v[11], v[4]);
+        map.connectRegion(v[11], v[5]);
+        map.connectRegion(v[12], v[5]);
+        map.connectRegion(v[12], v[6]);
+
+        map.connectRegion(v[1],  v[13]);
+        map.connectRegion(v[13], v[14]);
+        map.connectRegion(v[14], v[15]);
+        map.connectRegion(v[15], v[16]);
+        map.connectRegion(v[16], v[17]);
+        map.connectRegion(v[17], v[18]);
+        map.connectRegion(v[13], v[8]);
+        map.connectRegion(v[13], v[9]);
+        map.connectRegion(v[14], v[9]);
+        map.connectRegion(v[14], v[10]);
+        map.connectRegion(v[15], v[10]);
+        map.connectRegion(v[15], v[11]);
+        map.connectRegion(v[16], v[11]);
+        map.connectRegion(v[16], v[12]);
+        map.connectRegion(v[17], v[12]);
+        map.connectRegion(v[17], v[7]);
+        map.connectRegion(v[18], v[7]);
+
+        map.connectRegion(v[19], v[20]);
+        map.connectRegion(v[20], v[21]);
+        map.connectRegion(v[21], v[22]);
+        map.connectRegion(v[22], v[23]);
+        map.connectRegion(v[19], v[13]);
+        map.connectRegion(v[19], v[14]);
+        map.connectRegion(v[20], v[14]);
+        map.connectRegion(v[20], v[15]);
+        map.connectRegion(v[21], v[15]);
+        map.connectRegion(v[22], v[15]);
+        map.connectRegion(v[22], v[16]);
+        map.connectRegion(v[23], v[16]);
+        map.connectRegion(v[23], v[17]);
+
+        map.connectRegion(v[24], v[25]);
+        map.connectRegion(v[25], v[26]);
+        map.connectRegion(v[26], v[27]);
+        map.connectRegion(v[27], v[28]);
+        map.connectRegion(v[28], v[29]);
+        map.connectRegion(v[29], v[30]);
+        map.connectRegion(v[24], v[19]);
+        map.connectRegion(v[25], v[19]);
+        map.connectRegion(v[25], v[20]);
+        map.connectRegion(v[26], v[20]);
+        map.connectRegion(v[26], v[21]);
+        map.connectRegion(v[27], v[21]);
+        map.connectRegion(v[27], v[22]);
+        map.connectRegion(v[28], v[22]);
+        map.connectRegion(v[28], v[23]);
+        map.connectRegion(v[29], v[23]);
+        map.connectRegion(v[29], v[17]);
+        map.connectRegion(v[29], v[18]);
+        map.connectRegion(v[28], v[30]);
+
+        assert(map.isConnected());
+
+        map.exportMap("3player.map");
+        map.exportMapGraphViz("3player.viz");
+    }
+
+
+    { // 4 player
+
+        Map map;
+
+        RegionNode regions[] = {
+                /*0*/   RegionNode(), // index offset
+                /*1*/   RegionNode(RegionType::SEA,      MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*2*/   RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*3*/   RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::CAVERN}, true),
+                /*4*/   RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::NONE},   true),
+                /*5*/   RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, false),
+                /*6*/   RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::CAVERN}, false),
+                /*7*/   RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, true),
+                /*8*/   RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::MINE},   true),
+                /*9*/   RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::CAVERN}, true),
+                /*10*/  RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*11*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::MINE},   false),
+                /*12*/  RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, true),
+                /*13*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+                /*14*/  RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*15*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::NONE},   true),
+                /*16*/  RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, false),
+                /*17*/  RegionNode(RegionType::SEA,      MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*18*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::MINE},   false),
+                /*19*/  RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*20*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+                /*21*/  RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*22*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false),
+                /*23*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+                /*24*/  RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   true),
+                /*25*/  RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::NONE},   true),
+                /*26*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::CAVERN}, true),
+                /*27*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::MINE},   true),
+                /*28*/  RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, true),
+                /*29*/  RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*30*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::NONE},   false),
+                /*31*/  RegionNode(RegionType::MARSH,    MapToken::NONE,     {RegionFeature::CAVERN}, true),
+                /*32*/  RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, true),
+                /*33*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::MINE},   false),
+                /*34*/  RegionNode(RegionType::MOUNTAIN, MapToken::MOUNTAIN, {RegionFeature::CAVERN}, false),
+                /*35*/  RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::MAGIC_SOURCE}, false),
+                /*36*/  RegionNode(RegionType::FOREST,   MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*37*/  RegionNode(RegionType::HILL,     MapToken::NONE,     {RegionFeature::MINE},   false),
+                /*38*/  RegionNode(RegionType::FARM,     MapToken::NONE,     {RegionFeature::NONE},   false),
+                /*39*/  RegionNode(RegionType::SEA,      MapToken::NONE,     {RegionFeature::NONE},   false),
+        };
+
+
+        Vertex v[40];
+        for (int i = 1; i < 40; i++)
+        {
+            v[i] = map.addRegion(regions[i]);
+        }
+
+
+        map.connectRegion(v[1], v[2]); //1
+        map.connectRegion(v[1], v[3]);
+        map.connectRegion(v[1], v[7]);
+        map.connectRegion(v[1], v[8]);
+        map.connectRegion(v[1], v[9]);
+        map.connectRegion(v[1], v[14]);
+        map.connectRegion(v[1], v[20]);
+
+        map.connectRegion(v[2], v[7]); //2
+
+        map.connectRegion(v[3], v[4]); //3
+        map.connectRegion(v[3], v[8]);
+
+        map.connectRegion(v[4], v[5]); //4
+        map.connectRegion(v[4], v[8]);
+        map.connectRegion(v[4], v[10]);
+        map.connectRegion(v[4], v[11]);
+
+        map.connectRegion(v[5], v[6]); //5
+        map.connectRegion(v[5], v[11]);
+
+        map.connectRegion(v[6], v[11]); //6
+        map.connectRegion(v[6], v[12]);
+        map.connectRegion(v[6], v[13]);
+
+        map.connectRegion(v[7], v[9]); //7
+        map.connectRegion(v[7], v[11]);
+        map.connectRegion(v[7], v[14]);
+
+        map.connectRegion(v[8], v[9]); //8
+
+        map.connectRegion(v[9], v[10]); //9
+        map.connectRegion(v[9], v[15]);
+
+        map.connectRegion(v[10], v[11]); //10
+        map.connectRegion(v[10], v[15]);
+        map.connectRegion(v[10], v[16]);
+        map.connectRegion(v[10], v[17]);
+
+        map.connectRegion(v[11], v[12]); //11
+        map.connectRegion(v[11], v[17]);
+
+        map.connectRegion(v[12], v[13]); //12
+        map.connectRegion(v[12], v[17]);
+        map.connectRegion(v[12], v[18]);
+
+        map.connectRegion(v[13], v[18]); //13
+        map.connectRegion(v[13], v[19]);
+
+
+        map.connectRegion(v[14], v[15]); //14
+        map.connectRegion(v[14], v[20]);
+        map.connectRegion(v[14], v[21]);
+
+        map.connectRegion(v[15], v[16]); //15
+        map.connectRegion(v[15], v[21]);
+        map.connectRegion(v[15], v[22]);
+
+        map.connectRegion(v[16], v[17]); //16
+        map.connectRegion(v[16], v[22]);
+
+        map.connectRegion(v[17], v[18]); //17
+        map.connectRegion(v[17], v[22]);
+        map.connectRegion(v[17], v[23]);
+        map.connectRegion(v[17], v[24]);
+
+        map.connectRegion(v[18], v[19]); //18
+        map.connectRegion(v[18], v[24]);
+        map.connectRegion(v[18], v[25]);
+
+        map.connectRegion(v[19], v[25]); //19
+        map.connectRegion(v[19], v[26]);
+
+        map.connectRegion(v[20], v[21]); //20
+        map.connectRegion(v[20], v[27]);
+
+        map.connectRegion(v[21], v[22]); //21
+        map.connectRegion(v[21], v[27]);
+        map.connectRegion(v[21], v[28]);
+
+        map.connectRegion(v[22], v[23]); //22
+        map.connectRegion(v[22], v[28]);
+
+        map.connectRegion(v[23], v[24]); //23
+        map.connectRegion(v[23], v[28]);
+        map.connectRegion(v[23], v[31]);
+
+        map.connectRegion(v[24], v[25]); //24
+        map.connectRegion(v[24], v[31]);
+        map.connectRegion(v[24], v[32]);
+        map.connectRegion(v[24], v[33]);
+        map.connectRegion(v[24], v[34]);
+
+        map.connectRegion(v[25], v[26]); //25
+        map.connectRegion(v[25], v[35]);
+
+        map.connectRegion(v[26], v[35]); //26
+
+        map.connectRegion(v[27], v[28]); //27
+        map.connectRegion(v[27], v[29]);
+
+        map.connectRegion(v[28], v[29]); //28
+        map.connectRegion(v[28], v[30]);
+        map.connectRegion(v[28], v[31]);
+
+        map.connectRegion(v[29], v[30]); //29
+
+        map.connectRegion(v[30], v[31]); //30
+        map.connectRegion(v[30], v[37]);
+
+        map.connectRegion(v[31], v[32]); //31
+        map.connectRegion(v[31], v[37]);
+        map.connectRegion(v[31], v[38]);
+
+        map.connectRegion(v[32], v[33]); //32
+        map.connectRegion(v[32], v[38]);
+
+        map.connectRegion(v[33], v[34]); //33
+        map.connectRegion(v[33], v[36]);
+
+        map.connectRegion(v[34], v[35]); //34
+        map.connectRegion(v[34], v[25]);
+        map.connectRegion(v[34], v[36]);
+
+        map.connectRegion(v[35], v[36]); //35
+        map.connectRegion(v[35], v[39]);
+
+        map.connectRegion(v[36], v[39]);
+        map.connectRegion(v[37], v[38]); //37
+        map.connectRegion(v[38], v[33]); //38
+
+        assert(map.isConnected());
+
+        map.exportMap("4player.map");
+        map.exportMapGraphViz("4player.viz");
     }
 
 }
