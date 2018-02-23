@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QThread>
 
+#include "GameDeck.hpp"
 #include "Map.hpp"
 #include "Player.hpp"
 
@@ -30,7 +31,8 @@ signals:
 
 private:
 
-    Map _map;
+    std::shared_ptr<Map> _map;
+    std::shared_ptr<GameDeck> _deck;
     std::vector<std::shared_ptr<Player>> _players;
 
 

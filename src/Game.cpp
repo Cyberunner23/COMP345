@@ -9,7 +9,7 @@ void Game::run()
 
     setup();
 
-    std::string graphVizStr = _map.exportMapGraphViz();
+    std::string graphVizStr = _map->exportMapGraphViz();
     emit initUI(graphVizStr);
 
     /*while (true)
@@ -77,8 +77,17 @@ void Game::setup()
 
     //Should not cause an exception at this point since the maps were previously validated.
     std::string fileName = validFiles[selection - 1];
-    assert(_map.importMap("data/" + fileName));
+    assert(_map->importMap("data/" + fileName));
+    _deck->removeMapTokensAlreadyInMap(*_map);
     std::cout << "[INFO] Loaded map: " << fileName << std::endl;
+
+    //Set number pf players
+    std::cout << "How many players re playing?" << std::endl;
+    unsigned int numPlayers = getUserInput<2>(5);
+    for (unsigned int i = 0; i < numPlayers; i++)
+    {
+        _players.push_back(std::make_shared<Player>(_map, _deck));
+    }
 }
 
 
