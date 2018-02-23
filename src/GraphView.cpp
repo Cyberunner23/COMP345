@@ -4,6 +4,20 @@
 
 #include "GraphView.hpp"
 
+GraphView::GraphView()
+{
+    _exitShortcut = std::make_unique<QShortcut>(QKeySequence(Qt::CTRL + Qt::Key_Q), this);
+    QObject::connect(_exitShortcut.get(), &QShortcut::activated,
+                     this,                &GraphView::exit);
+
+
+    _layout = std::make_unique<QHBoxLayout>();
+    _svgViewer = std::make_unique<QSvgWidget>();
+
+    _layout->addWidget(_svgViewer.get());
+    this->setLayout(_layout.get());
+}
+
 void GraphView::updateGraph(std::string graphVizStr)
 {
     Agraph_t* graph = agmemread(graphVizStr.data());
@@ -17,5 +31,13 @@ void GraphView::updateGraph(std::string graphVizStr)
     gvRenderData (ctx, graph, "svg", &data, &length);
 
     QByteArray svgData(data, length);
-    this->load(svgData);
+    _svgViewer->load(svgData);
+
+    delete graph;
+    //Not deleting ctx since compiler warns against it...
+}
+
+void GraphView::exit()
+{
+    QApplication::exit(0);
 }

@@ -102,7 +102,7 @@ public:
 
     //! Map constructor
     Map() = default;
-    explicit Map(unsigned int numTurns);
+    explicit Map(unsigned int numPlayers, unsigned int numTurns);
 
 
     //! \brief Loads a map
@@ -136,6 +136,8 @@ public:
         return &_mainGraph;
     }
 
+    //! \brief Gets the ideal number of players for the map
+    unsigned int getNumPlayers();
     //! \brief Gets the number of turns for the map
     unsigned int getMapNumTurns();
     //! \brief Incerments the current turn counter and returns the new value

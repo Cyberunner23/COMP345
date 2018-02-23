@@ -4,38 +4,40 @@
 //refs: https://stackoverflow.com/questions/671714/modifying-vertex-properties-in-a-boostgraph
 //https://stackoverflow.com/questions/19360643/how-to-access-boost-subgraph-graph-properties
 
-
+#include <memory>
+#include <string>
 
 #include <QtCore>
 #include <QtWidgets>
-#include <QtSvg/QtSvg>
-#include <QHBoxLayout>
 
+#include "Game.hpp"
 #include "GraphView.hpp"
-#include "Map.hpp"
+
+void initUI(std::string graphVizStr);
+
+std::unique_ptr<GraphView> view;
+std::unique_ptr<Game> game;
 
 //! driver for the game, to be implemented later.
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
 
-    Map map;
-    GraphView* view = new GraphView;
+    view = std::make_unique<GraphView>();
+    game = std::make_unique<Game>();
 
-    map.importMap("data/5player.map");
+    QObject::connect(&*game, &Game::initUI, initUI);
+    QObject::connect(&*game, SIGNAL(updateUI(std::string)), &*view, SLOT(updateGraph(std::string)));
 
+    game->start();
 
-    QWidget* w = new QWidget;
-    QHBoxLayout* hLayout = new QHBoxLayout;
-    hLayout->addWidget(view);
-
-    w->setLayout(hLayout);
-    w->show();
-
-    view->updateGraph(map.exportMapGraphViz());
+    return app.exec();
+}
 
 
 
-
-    app.exec();
+void initUI(std::string graphVizStr)
+{
+    view->updateGraph(graphVizStr);
+    view->show();
 }

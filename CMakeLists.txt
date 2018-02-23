@@ -42,8 +42,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 #------------------------------------------------------------------------------
 
 #Boost serialization
-hunter_add_package(Boost COMPONENTS graph serialization)
-find_package(Boost CONFIG REQUIRED graph serialization)
+hunter_add_package(Boost COMPONENTS filesystem graph serialization system)
+find_package(Boost CONFIG REQUIRED filesystem graph serialization system)
 
 
 #------------------------------------------------------------------------------
@@ -75,6 +75,8 @@ include_directories(${GRAPHVIZ_INCLUDE_DIRS})
 set(SRCS
     src/DiceRollingFacility.hpp
     src/DiceRollingFacility.cpp
+    src/Game.hpp
+    src/Game.cpp
     src/GameDeck.hpp
     src/GameDeck.cpp
     src/GraphView.hpp
@@ -90,6 +92,7 @@ set(SRCS
 
 set(LIBS
     Boost::boost
+    Boost::filesystem
     Boost::graph
     Boost::serialization
     ${GRAPHVIZ_CGRAPH_LIBRARY}
@@ -98,6 +101,7 @@ set(LIBS
     Qt5::Core
     Qt5::Widgets
     Qt5::Svg
+    Boost::system # Needs to be last
 )
 
 

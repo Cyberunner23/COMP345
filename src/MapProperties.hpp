@@ -9,6 +9,7 @@ struct MapProperties
     friend inline std::ostream &operator<<(std::ostream &oStream, const MapProperties &regionNode);
     friend inline std::istream &operator>>(std::istream &iStream, MapProperties &regionNode);
 
+    unsigned int numPlayers;
     unsigned int numTurns;
     unsigned int currentTurn;
 
@@ -16,6 +17,7 @@ private:
     template <class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
+        ar & boost::serialization::make_nvp("numPlayers", numPlayers);
         ar & boost::serialization::make_nvp("numTurns", numTurns);
         ar & boost::serialization::make_nvp("currentTurn", currentTurn);
     }
