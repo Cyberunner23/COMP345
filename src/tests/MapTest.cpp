@@ -20,12 +20,12 @@ int main(int argc, char** argv)
     {
         Map map1;
 
-        Vertex a = map1.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex b = map1.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex c = map1.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex d = map1.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex e = map1.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex f = map1.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
+        Vertex a = map1.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex b = map1.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex c = map1.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex d = map1.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex e = map1.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex f = map1.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
 
         map1.connectRegion(a, b);
         map1.connectRegion(b, d);
@@ -43,12 +43,12 @@ int main(int argc, char** argv)
     {
         Map map2;
 
-        Vertex a2 = map2.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex b2 = map2.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex c2 = map2.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex d2 = map2.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex e2 = map2.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex f2 = map2.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
+        Vertex a2 = map2.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex b2 = map2.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex c2 = map2.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex d2 = map2.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex e2 = map2.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex f2 = map2.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
 
         map2.connectRegion(b2, d2);
         map2.connectRegion(b2, c2);
@@ -67,12 +67,12 @@ int main(int argc, char** argv)
         SGraph &map3Sub1 = map3.createSubGraph();
         SGraph &map3Sub2 = map3.createSubGraph();
 
-        Vertex a3 = map3.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex b3 = map3.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex c3 = map3.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex d3 = map3.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex e3 = map3.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex f3 = map3.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
+        Vertex a3 = map3.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex b3 = map3.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex c3 = map3.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex d3 = map3.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex e3 = map3.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex f3 = map3.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
 
         Vertex A1 = map3.addRegion(a3, map3Sub1);
         Vertex B1 = map3.addRegion(b3, map3Sub1);
@@ -104,12 +104,12 @@ int main(int argc, char** argv)
         SGraph &map4Sub1 = map4.createSubGraph();
         SGraph &map4Sub2 = map4.createSubGraph();
 
-        Vertex a3 = map4.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex b3 = map4.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex c3 = map4.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex d3 = map4.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex e3 = map4.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
-        Vertex f3 = map4.addRegion(RegionNode(RegionType::SEA, MapToken::NONE, {RegionFeature::NONE}, false));
+        Vertex a3 = map4.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex b3 = map4.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex c3 = map4.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex d3 = map4.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex e3 = map4.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
+        Vertex f3 = map4.addRegion(RegionNode(RegionType::SEA, {RegionFeature::NONE}, false));
 
         Vertex A1 = map4.addRegion(a3, map4Sub1);
         Vertex B1 = map4.addRegion(b3, map4Sub1);

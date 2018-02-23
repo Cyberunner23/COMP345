@@ -9,18 +9,9 @@ void Game::run()
 
     setup();
 
-    std::string graphVizStr = _map->exportMapGraphViz();
-    emit initUI(graphVizStr);
+    emit updateUI(_map);
 
-    /*while (true)
-    {
-        for (auto filename : getFileList("data", ".map"))
-        {
-            std::cout << filename << std::endl;
-        }
-        std::cout << "test" << std::endl;
-        std::cin.get();
-    }*/
+
 }
 
 
@@ -36,7 +27,7 @@ void Game::setup()
         Map map;
 
         try {
-            if (map.importMap(file))
+            if (map.importMap("data/" + file))
             {
                 validFiles.push_back(file);
             }
@@ -59,7 +50,7 @@ void Game::setup()
     for (unsigned int i = 0; i < validFiles.size(); i++)
     {
         Map map;
-        map.importMap(validFiles[i]);
+        map.importMap("data/" + validFiles[i]);
         std::cout << "[" << i + 1 << "]: " << validFiles[i] << " (Ideal: " << map.getNumPlayers() << " Players)" << std::endl;
     }
     std::cout << "[" << validFiles.size() + 1 <<"]: Exit" << std::endl;
@@ -78,8 +69,8 @@ void Game::setup()
     //Should not cause an exception at this point since the maps were previously validated.
     std::string fileName = validFiles[selection - 1];
     assert(_map->importMap("data/" + fileName));
-    _deck->removeMapTokensAlreadyInMap(*_map);
     std::cout << "[INFO] Loaded map: " << fileName << std::endl;
+
 
     //Set number pf players
     std::cout << "How many players re playing?" << std::endl;
@@ -88,8 +79,15 @@ void Game::setup()
     {
         _players.push_back(std::make_shared<Player>(_map, _deck));
     }
+
+    std::cout << "[INFO]: created " << numPlayers << " players." << std::endl;
 }
 
+void Game::startup()
+{
+    //Shuffle race banners, draw 5
+
+}
 
 std::vector<std::string> Game::getFileList(std::string directory, std::string ext)
 {

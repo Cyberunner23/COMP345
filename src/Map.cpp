@@ -70,6 +70,11 @@ unsigned int Map::getMapNumTurns()
     return boost::get_property(_mainGraph, graph_info).numTurns;
 }
 
+unsigned int Map::getCurrentTurn()
+{
+    return boost::get_property(_mainGraph, graph_info).currentTurn;
+}
+
 unsigned int Map::incrementCurrentTurn()
 {
     return ++boost::get_property(_mainGraph, graph_info).currentTurn;

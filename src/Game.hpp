@@ -2,6 +2,7 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -22,12 +23,15 @@ Q_OBJECT
 
 public:
 
+    Game() : _map(std::make_shared<Map>())
+           , _deck(std::make_shared<GameDeck>())
+    {}
+
     void run();
 
 signals:
 
-    void initUI(std::string graphVizStr);
-    void updateUI(std::string graphVizStr);
+    void updateUI(std::shared_ptr<Map> map);
 
 private:
 
@@ -37,6 +41,7 @@ private:
 
 
     void setup();
+    void startup();
 
     std::vector<std::string> getFileList(std::string directory, std::string ext);
 

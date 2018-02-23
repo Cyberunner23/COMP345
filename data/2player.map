@@ -20,7 +20,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;5&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -38,7 +37,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;0&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -56,7 +54,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;1&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -74,7 +71,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;3&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -92,7 +88,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;2&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -110,7 +105,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;4&lt;/RegionType&gt;
-	&lt;MapToken&gt;2&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;2&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -129,7 +123,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;2&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -147,7 +140,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;5&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -165,7 +157,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;4&lt;/RegionType&gt;
-	&lt;MapToken&gt;2&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -183,7 +174,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;0&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -201,7 +191,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;1&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -219,7 +208,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;0&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -237,7 +225,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;1&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -255,7 +242,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;0&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -273,7 +259,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;2&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -291,7 +276,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;4&lt;/RegionType&gt;
-	&lt;MapToken&gt;2&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -309,7 +293,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;3&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -327,7 +310,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;2&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -345,7 +327,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;3&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -363,7 +344,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;4&lt;/RegionType&gt;
-	&lt;MapToken&gt;2&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -381,7 +361,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;3&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -399,7 +378,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;1&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;
@@ -417,7 +395,6 @@
 &lt;boost_serialization signature=&quot;serialization::archive&quot; version=&quot;16&quot;&gt;
 &lt;RegionNode class_id=&quot;0&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 	&lt;RegionType&gt;5&lt;/RegionType&gt;
-	&lt;MapToken&gt;7&lt;/MapToken&gt;
 	&lt;RegionFeature class_id=&quot;1&quot; tracking_level=&quot;0&quot; version=&quot;0&quot;&gt;
 		&lt;count&gt;1&lt;/count&gt;
 		&lt;item_version&gt;0&lt;/item_version&gt;

@@ -10,8 +10,6 @@ int main(int argc, char** argv)
     std::shared_ptr<Map> map = std::make_shared<Map>();
     std::shared_ptr<GameDeck> deck = std::make_shared<GameDeck>();
 
-    deck->removeMapTokensAlreadyInMap(*map);
-
     Player player(map, deck);
 
     std::cout << "Calling player.picks_race()..." << std::endl;

@@ -138,9 +138,6 @@ public:
     //! Gets a pointer to the internal vector of tokens
     std::vector<VictoryCoin>* getCoinsTokenList();
 
-    //! Deletes the tokens from the deck that are already on the map due to the deserialization
-    void removeMapTokensAlreadyInMap(Map& map);
-
 private:
 
     //! Templated implementation of the take token function

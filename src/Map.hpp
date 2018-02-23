@@ -140,6 +140,8 @@ public:
     unsigned int getNumPlayers();
     //! \brief Gets the number of turns for the map
     unsigned int getMapNumTurns();
+    //! \brief Gets the current turn value.
+    unsigned int getCurrentTurn();
     //! \brief Incerments the current turn counter and returns the new value
     unsigned int incrementCurrentTurn();
 

@@ -70,9 +70,8 @@ struct RegionNode
     //! \param name Name of the region
     //! \param owner Owner of the region
     //! \param tokens Tokens placed on the region
-    RegionNode(RegionType type, MapToken token, std::list<RegionFeature> feature, bool isLostTribe)
+    RegionNode(RegionType type, std::list<RegionFeature> feature, bool isLostTribe)
             : _type(type)
-            , _token(token)
             , _feature(feature)
             , _isLostTribe(isLostTribe)
     {}
@@ -84,7 +83,6 @@ private:
     void serialize(Archive &ar, const unsigned int version)
     {
         ar & boost::serialization::make_nvp("RegionType", _type);
-        ar & boost::serialization::make_nvp("MapToken", _token);
         ar & boost::serialization::make_nvp("RegionFeature", _feature);
         ar & boost::serialization::make_nvp("IsLostTribe", _isLostTribe);
     }

@@ -21,23 +21,17 @@ std::unique_ptr<Game> game;
 //! driver for the game, to be implemented later.
 int main(int argc, char** argv)
 {
+    qRegisterMetaType<std::shared_ptr<Map>>("std::shared_ptr<Map>");
+
     QApplication app(argc, argv);
 
     view = std::make_unique<GraphView>();
     game = std::make_unique<Game>();
 
-    QObject::connect(&*game, &Game::initUI, initUI);
-    QObject::connect(&*game, SIGNAL(updateUI(std::string)), &*view, SLOT(updateGraph(std::string)));
+    QObject::connect(&*game, SIGNAL(updateUI(std::shared_ptr<Map>)), &*view, SLOT(updateGraph(std::shared_ptr<Map>)));
 
     game->start();
 
     return app.exec();
 }
 
-
-
-void initUI(std::string graphVizStr)
-{
-    view->updateGraph(graphVizStr);
-    view->show();
-}
