@@ -8,6 +8,7 @@ void Game::run()
 {
 
     setup();
+    startup();
 
     emit updateUI(_map);
 
@@ -77,7 +78,7 @@ void Game::setup()
     unsigned int numPlayers = getUserInput<2>(5);
     for (unsigned int i = 0; i < numPlayers; i++)
     {
-        _players.push_back(std::make_shared<Player>(_map, _deck));
+        _players.push_back(std::make_shared<Player>(_map, _storageTray, _vacuumTray));
     }
 
     std::cout << "[INFO]: created " << numPlayers << " players." << std::endl;
@@ -86,6 +87,77 @@ void Game::setup()
 void Game::startup()
 {
     //Shuffle race banners, draw 5
+    for (unsigned int i = 0; i < 5; i++)
+    {
+        std::unique_ptr<RaceBanner> banner;
+        assert(_vacuumTray->takeRandomRaceBanner(banner));
+        _selectionRaceBanners.push_back(std::move(banner));
+    }
+
+    //Put the rest of the banners in a stack
+    std::unique_ptr<RaceBanner> banner;
+    while(_vacuumTray->takeRandomRaceBanner(banner))
+    {
+        _remainingRaceBanners.push(std::move(banner));
+    }
+
+    //Shiffle special tokens, draw 5
+    for (unsigned int i = 0; i < 5; i++)
+    {
+        std::unique_ptr<SpecialPower> token;
+        assert(_vacuumTray->takeRandomSpecialPower(token));
+        _selectionSpecialPowers.push_back(std::move(token));
+    }
+
+    //Put the rest of the tokens in a stack
+    std::unique_ptr<SpecialPower> token;
+    while(_vacuumTray->takeRandomSpecialPower(token))
+    {
+        _remainingSpecialPowers.push(std::move(token));
+    }
+
+    _map->addTokensToMap(_storageTray, _vacuumTray);
+
+
+    //Give players their initial coins
+    for(auto& player : _players)
+    {
+        bool isSuccess = true;
+
+        for (unsigned int i = 0; i < 5; ++i)
+        {
+            std::unique_ptr<VictoryCoin> coin;
+            isSuccess &= _vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_1), coin);
+
+            if (isSuccess){
+                player->coins.push_back(std::move(coin));
+            }
+        }
+
+        assert(isSuccess);
+    }
+
+    //Put the rest of the coins in the stash
+    std::unique_ptr<VictoryCoin> coin;
+    while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_1), coin))
+    {
+        _coinStash.push_back(std::move(coin));
+    }
+
+    while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_3), coin))
+    {
+        _coinStash.push_back(std::move(coin));
+    }
+
+    while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_5), coin))
+    {
+        _coinStash.push_back(std::move(coin));
+    }
+
+    while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_10), coin))
+    {
+        _coinStash.push_back(std::move(coin));
+    }
 
 }
 

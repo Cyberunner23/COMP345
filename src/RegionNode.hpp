@@ -11,7 +11,8 @@
 #include "boost/serialization/list.hpp"
 #include "boost/serialization/string.hpp"
 
-#include "Tokens.hpp"
+#include "Tokens/EMapToken.hpp"
+#include "Tokens/ERaceToken.hpp"
 
 enum class RegionType
 {
@@ -37,11 +38,11 @@ struct RegionNode
     std::string _name;
 
     RegionType _type;
-    MapToken _token;
-    std::list<RegionFeature> _feature;
+    MapToken* _token;
+    std::list<RegionFeature> _features;
     bool _isLostTribe;
 
-    std::list<RaceToken> _raceTokens;
+    std::vector<RaceToken*> _raceTokens;
 
 
     //Serialization is my friend
@@ -57,8 +58,8 @@ struct RegionNode
     //! will populate the member functions.
     RegionNode()
             : _type(RegionType::SEA)
-            , _token(MapToken::NONE)
-            , _feature(std::list<RegionFeature>{RegionFeature::NONE})
+            , _token(nullptr)
+            , _features(std::list<RegionFeature>{RegionFeature::NONE})
             , _isLostTribe(false)
     {}
 
@@ -72,7 +73,7 @@ struct RegionNode
     //! \param tokens Tokens placed on the region
     RegionNode(RegionType type, std::list<RegionFeature> feature, bool isLostTribe)
             : _type(type)
-            , _feature(feature)
+            , _features(feature)
             , _isLostTribe(isLostTribe)
     {}
 
@@ -83,7 +84,7 @@ private:
     void serialize(Archive &ar, const unsigned int version)
     {
         ar & boost::serialization::make_nvp("RegionType", _type);
-        ar & boost::serialization::make_nvp("RegionFeature", _feature);
+        ar & boost::serialization::make_nvp("RegionFeature", _features);
         ar & boost::serialization::make_nvp("IsLostTribe", _isLostTribe);
     }
 };

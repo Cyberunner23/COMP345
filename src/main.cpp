@@ -13,6 +13,8 @@
 #include "Game.hpp"
 #include "GraphView.hpp"
 
+#include "Tokens/VacuumTray.hpp"
+
 void initUI(std::string graphVizStr);
 
 std::unique_ptr<GraphView> view;

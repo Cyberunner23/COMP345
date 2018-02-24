@@ -87,7 +87,16 @@ set(SRCS
     src/Player.hpp
     src/Player.cpp
     src/RegionNode.hpp
-    src/Tokens.hpp
+    src/Tokens/EMapToken.hpp
+    src/Tokens/ERaceBanner.hpp
+    src/Tokens/ERaceToken.hpp
+    src/Tokens/ESpecialPower.hpp
+    src/Tokens/EVictoryCoin.hpp
+    src/Tokens/RemovebleStorageTray.hpp
+    src/Tokens/RemovebleStorageTray.cpp
+    src/Tokens/Tokens.hpp
+    src/Tokens/VacuumTray.hpp
+    src/Tokens/VacuumTray.cpp
 )
 
 set(LIBS

@@ -7,7 +7,7 @@
 int main(int argc, char** argv)
 {
 
-    std::shared_ptr<Map> map = std::make_shared<Map>();
+    /*std::shared_ptr<Map> map = std::make_shared<Map>();
     std::shared_ptr<GameDeck> deck = std::make_shared<GameDeck>();
 
     Player player(map, deck);
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 
     std::cout << "The player has " << player.getRaceTokens()->size() << " race tokens..." << std::endl;
     std::cout << std::endl;
-
+*/
 
 
 

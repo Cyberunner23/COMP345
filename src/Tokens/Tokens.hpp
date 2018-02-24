@@ -1,6 +1,30 @@
 
 #pragma once
 
+#include <iostream>
+
+template<typename TokenType>
+struct Token
+{
+    static_assert(std::is_enum<TokenType>::value, "Tokens must be enums!");
+
+    Token() {}
+    Token(TokenType kind, bool isFaceUp = true)
+            : kind(kind)
+            , isFaceUp(isFaceUp)
+    {}
+
+    bool operator==(const Token<TokenType>& token) const
+    {
+        return kind == token.kind;
+    }
+
+    TokenType kind;
+    bool isFaceUp;
+};
+
+/*
+
 //! MapToken: Environmental tokens that are initially placed on the map
 enum class MapToken
 {
@@ -286,3 +310,4 @@ inline std::string getTokenString(const VictoryCoin& token)
             return "EMPTY";
     }
 }
+*/

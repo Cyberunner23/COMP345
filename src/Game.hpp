@@ -1,8 +1,10 @@
 
 #pragma once
 
+#include <cassert>
 #include <iostream>
 #include <memory>
+#include <stack>
 #include <string>
 #include <vector>
 
@@ -10,9 +12,10 @@
 #include <QApplication>
 #include <QThread>
 
-#include "GameDeck.hpp"
 #include "Map.hpp"
 #include "Player.hpp"
+#include "Tokens/RemovebleStorageTray.hpp"
+#include "Tokens/VacuumTray.hpp"
 
 namespace fs = boost::filesystem;
 
@@ -24,7 +27,8 @@ Q_OBJECT
 public:
 
     Game() : _map(std::make_shared<Map>())
-           , _deck(std::make_shared<GameDeck>())
+           , _vacuumTray(std::make_shared<VacuumTray>())
+           , _storageTray(std::make_shared<RemovableStorageTray>())
     {}
 
     void run();
@@ -36,9 +40,18 @@ signals:
 private:
 
     std::shared_ptr<Map> _map;
-    std::shared_ptr<GameDeck> _deck;
+    std::shared_ptr<RemovableStorageTray> _storageTray;
+    std::shared_ptr<VacuumTray> _vacuumTray;
+
     std::vector<std::shared_ptr<Player>> _players;
 
+    std::vector<std::unique_ptr<RaceBanner>> _selectionRaceBanners;
+    std::stack<std::unique_ptr<RaceBanner>> _remainingRaceBanners;
+
+    std::vector<std::unique_ptr<SpecialPower>> _selectionSpecialPowers;
+    std::stack<std::unique_ptr<SpecialPower>> _remainingSpecialPowers;
+
+    std::vector<std::unique_ptr<VictoryCoin>> _coinStash;
 
     void setup();
     void startup();

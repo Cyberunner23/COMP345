@@ -5,23 +5,27 @@
 #include <memory>
 
 #include "DiceRollingFacility.hpp"
-#include "GameDeck.hpp"
 #include "Map.hpp"
+#include "Tokens/RemovebleStorageTray.hpp"
+#include "Tokens/VacuumTray.hpp"
 
 class Player
 {
 
 public:
 
+    std::vector<std::unique_ptr<VictoryCoin>> coins;
+
     //! Contructor for the player
     //! \param map A pointer to the map
     //! \param gameDeck A poointer to the Game Deck
-    Player(std::shared_ptr<Map> map, std::shared_ptr<GameDeck> gameDeck)
+    Player(std::shared_ptr<Map> map, std::shared_ptr<RemovableStorageTray> storageTray, std::shared_ptr<VacuumTray> vacuumTray)
             : _ownedRegions(map->createSubGraph())
             , _map(std::move(map))
-            , _gameDeck(std::move(gameDeck))
-            , _currentRace(RaceBanner::EMPTY)
-            , _currentSpecialPower(SpecialPower::EMPTY)
+            , _storageTray(storageTray)
+            , _vacuumTray(vacuumTray)
+            , _currentRace(nullptr)
+            , _currentSpecialPower(nullptr)
     {}
 
     //! Lets user pick a race.
@@ -35,10 +39,7 @@ public:
 
 
     //! Gets a pointer to the player's race token vector.
-    std::vector<RaceToken>* getRaceTokens();
-
-    //! Gets a pointer to the player's vicotry token vector.
-    std::vector<VictoryCoin>* getCoins();
+    std::vector<std::unique_ptr<RaceToken>>* getRaceTokens();
 
     //! Gets a pointher to the player's current race banner.
     RaceBanner* getRaceBanner();
@@ -56,12 +57,14 @@ private:
     SGraph& _ownedRegions;
 
     std::shared_ptr<Map> _map;
-    std::shared_ptr<GameDeck> _gameDeck;
 
-    std::vector<RaceToken> _raceTokens;
-    std::vector<VictoryCoin> _coins;
-    RaceBanner _currentRace;
-    SpecialPower _currentSpecialPower;
+    std::shared_ptr<RemovableStorageTray> _storageTray;
+    std::shared_ptr<VacuumTray> _vacuumTray;
+
+    std::vector<std::unique_ptr<RaceToken>> _raceTokens;
+    std::vector<std::unique_ptr<VictoryCoin>> _coins;
+    std::unique_ptr<RaceBanner> _currentRace;
+    std::unique_ptr<SpecialPower> _currentSpecialPower;
 
     std::string _summarySheet = "sw_help_en.pdf";
 

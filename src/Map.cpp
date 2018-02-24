@@ -81,6 +81,42 @@ unsigned int Map::incrementCurrentTurn()
 }
 
 
+bool Map::addTokensToMap(std::shared_ptr<RemovableStorageTray> storageTray, std::shared_ptr<VacuumTray> vacuumTray)
+{
+    std::pair<VertexIterator, VertexIterator> iterPair = boost::vertices(_mainGraph);
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+
+    bool isSuccess = true;
+    for(; iterPair.first != iterPair.second && isSuccess; ++iterPair.first)
+    {
+
+        if (dataMap[*iterPair.first]._isLostTribe)
+        {
+            std::unique_ptr<RaceToken> lostTribeToken;
+            isSuccess &= storageTray->takeRaceToken(RaceToken(ERaceToken::LOST_TRIBE), lostTribeToken);
+
+            if (isSuccess)
+            {
+                dataMap[*iterPair.first]._raceTokens.push_back(lostTribeToken.get());
+            }
+        }
+
+        if (dataMap[*iterPair.first]._type == RegionType::MOUNTAIN)
+        {
+            std::unique_ptr<MapToken> mountainToken;
+            isSuccess &= vacuumTray->takeToken(MapToken(EMapToken::MOUNTAIN), mountainToken);
+
+            if (isSuccess)
+            {
+                dataMap[*iterPair.first]._token = mountainToken.get();
+            }
+        }
+    }
+
+    return isSuccess;
+}
+
+
 SGraph& Map::createSubGraph()
 {
     return _mainGraph.create_subgraph();
@@ -92,7 +128,7 @@ SGraph& Map::createSubGraph(SGraph &subGraph)
 }
 
 
-Vertex Map::addRegion(const RegionNode& region)
+Vertex Map::addRegion(RegionNode region)
 {
     Vertex v = boost::add_vertex(_mainGraph);
 

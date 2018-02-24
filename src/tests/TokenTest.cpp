@@ -2,7 +2,7 @@
 #include <iostream>
 #include <map>
 
-#include "../GameDeck.hpp"
+//#include "../GameDeck.hpp"
 
 
 //In terms of setting up the game pieces, they get setup when
@@ -10,7 +10,7 @@
 int main(int argc, char** argv)
 {
 
-    GameDeck provider;
+    /*GameDeck provider;
 
     std::cout << "There are " << provider.getCoinsTokenListSize() << " coins in the deck." << std::endl;
     std::cout << "There are " << provider.getMapTokensTokenListSize() << " map tokens in the deck." << std::endl;
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
     }
     std::cout << std::endl;
 
-    return 0;
+    return 0;*/
 }
 
 

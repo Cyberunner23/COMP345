@@ -1,13 +1,13 @@
 
 #pragma once
-
+/*
 #include <algorithm>
 #include <iostream>
 #include <utility>
 #include <vector>
 
 #include "Map.hpp"
-#include "Tokens.hpp"
+#include "Tokens/Tokens.hpp"
 
 
 //! Class for the game deck.
@@ -186,3 +186,4 @@ private:
     std::vector<VictoryCoin> _coins;
 
 };
+*/

@@ -27,6 +27,8 @@
 
 #include "MapProperties.hpp"
 #include "RegionNode.hpp"
+#include "Tokens/VacuumTray.hpp"
+#include "Tokens/RemovebleStorageTray.hpp"
 
 
 //! Custom property for vertex data
@@ -47,18 +49,12 @@ enum graph_info_t
     graph_info
 };
 
-enum graph_info2_t
-{
-    graph_info2
-};
-
 // Registering the new properties
 namespace boost
 {
     BOOST_INSTALL_PROPERTY(vertex, data);
     BOOST_INSTALL_PROPERTY(vertex, displaytxt);
     BOOST_INSTALL_PROPERTY(graph, info);
-    BOOST_INSTALL_PROPERTY(graph, info2);
 }
 
 //! The graph. Uses BGL.
@@ -145,6 +141,11 @@ public:
     //! \brief Incerments the current turn counter and returns the new value
     unsigned int incrementCurrentTurn();
 
+    //! \brief Adds tokens to the map.
+
+    //! Adds the initial tokens to the map, i.e. the Mountain
+    //! tokens and the lost tribe tokens.
+    bool addTokensToMap(std::shared_ptr<RemovableStorageTray> storageTray, std::shared_ptr<VacuumTray> vacuumTray);
 
     //! \brief Creates a subgraph
 
@@ -165,7 +166,7 @@ public:
     //! Adds a RegionNode to the main graph.
     //! \param region Region to be added to the main graph.
     //! \return The resulting Vertex object.
-    Vertex addRegion(const RegionNode& region);
+    Vertex addRegion(RegionNode region);
 
     //! \brief Adds a region to the provided subgraph
 

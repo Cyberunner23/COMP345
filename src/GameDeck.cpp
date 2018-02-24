@@ -1,4 +1,4 @@
-
+/*
 #include "GameDeck.hpp"
 
 bool GameDeck::takeToken(const SpecialPower& valueKind, SpecialPower& value)
@@ -103,3 +103,4 @@ std::vector<VictoryCoin>* GameDeck::getCoinsTokenList()
 {
     return &_coins;
 }
+*/

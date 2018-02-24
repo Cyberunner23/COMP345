@@ -7,15 +7,80 @@ GraphView::GraphView()
     QObject::connect(_exitShortcut.get(), &QShortcut::activated,
                      this,                &GraphView::exit);
 
-    _layout = std::make_unique<QVBoxLayout>();
-
+    _mainVLayout = std::make_unique<QVBoxLayout>();
     _turnCounter = std::make_unique<QLabel>();
-    _turnCounter->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+
+    _mainHLayout = std::make_unique<QHBoxLayout>();
+    _specialPowerLayout = std::make_unique<QVBoxLayout>();
+    _raceBannerLayout = std::make_unique<QVBoxLayout>();
     _svgViewer = std::make_unique<QSvgWidget>();
 
-    _layout->addWidget(_turnCounter.get());
-    _layout->addWidget(_svgViewer.get());
-    this->setLayout(_layout.get());
+
+
+    _turnCounter->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+    _mainVLayout->addWidget(_turnCounter.get());
+    _mainVLayout->addLayout(_mainHLayout.get());
+
+    _mainHLayout->addLayout(_specialPowerLayout.get());
+    _mainHLayout->addLayout(_raceBannerLayout.get());
+    _mainHLayout->addWidget(_svgViewer.get());
+
+
+
+    {
+        //Setup special power layout
+        _specialPowersLabel = std::make_unique<QLabel>(QString("SPECIAL POWERS"));
+        _specialPowersStackLabel = std::make_unique<QLabel>(QString("STACK"));
+        _specialPowersLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+        _specialPowersStackLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+        _specialPowerLayout->addWidget(_specialPowersLabel.get());
+
+        for (unsigned int i = 0; i < 6; ++i)
+        {
+            //Create label and keep track of it.
+            std::unique_ptr<QLabel> power = std::make_unique<QLabel>(QString(""));
+            power->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+            _specialPowers.push_back(std::move(power));
+        }
+
+        for (unsigned int i = 0; i < 5; ++i)
+        {
+            //Add 5 labels to layout
+            _specialPowerLayout->addWidget(_specialPowers[i].get());
+        }
+        //Add stack label
+        _specialPowerLayout->addWidget(_specialPowersStackLabel.get());
+        //Add last label, used as top of the stack view
+        _specialPowerLayout->addWidget(_specialPowers[5].get());
+    }
+
+    {
+        //Setup race banner layout
+        _raceBannersLabel = std::make_unique<QLabel>(QString("RACES"));
+        _raceBannersStackLabel = std::make_unique<QLabel>(QString("STACK"));
+        _raceBannersLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+        _raceBannersStackLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+        _raceBannerLayout->addWidget(_raceBannersLabel.get());
+        for (unsigned int i = 0; i < 6; ++i)
+        {
+            std::unique_ptr<QLabel> banner = std::make_unique<QLabel>();
+            banner->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+            _raceBanners.push_back(std::move(banner));
+        }
+
+        for(unsigned int i = 0; i < 5; ++i)
+        {
+            //Add 5 labels to layout
+            _raceBannerLayout->addWidget(_raceBanners[i].get());
+        }
+        //Add stack label
+        _raceBannerLayout->addWidget(_raceBannersStackLabel.get());
+        //Add last label, used as top of the stack view
+        _raceBannerLayout->addWidget(_raceBanners[5].get());
+    }
+
+
+    this->setLayout(_mainVLayout.get());
 }
 
 void GraphView::updateGraph(std::shared_ptr<Map> map)
@@ -66,7 +131,13 @@ void GraphView::updateGraph(std::shared_ptr<Map> map)
         _svgViewer->load(svgData);
 
         delete graph;
-        //Not deleting ctx since compiler warns against it...
+        gvFreeContext(ctx);
+    }
+
+
+    {
+        //Update Special Power layout
+
     }
 
 

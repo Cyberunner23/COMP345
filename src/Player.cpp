@@ -16,21 +16,19 @@ void Player::scores()
     std::cout << "called: scores()" << std::endl;
 }
 
-std::vector<RaceToken>* Player::getRaceTokens()
+std::vector<std::unique_ptr<RaceToken>>* Player::getRaceTokens()
 {
     return &_raceTokens;
 }
-std::vector<VictoryCoin>* Player::getCoins()
-{
-    return &_coins;
-}
+
 RaceBanner* Player::getRaceBanner()
 {
-    return &_currentRace;
+    return _currentRace.get();
 }
+
 SpecialPower* Player::getSpecialPower()
 {
-    return &_currentSpecialPower;
+    return _currentSpecialPower.get();
 }
 
 unsigned int Player::getOwnedRegionCount()
