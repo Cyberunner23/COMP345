@@ -3,6 +3,8 @@
 
 #include "Tokens.hpp"
 
+#include <QTextStream>
+
 enum class EMapToken
 {
     TROLL_LAIR,
@@ -17,7 +19,9 @@ enum class EMapToken
 
 typedef Token<EMapToken> MapToken;
 
-inline std::ostream &operator<<(std::ostream &os, const Token<EMapToken>& token) {
+inline QTextStream &operator<<(QTextStream &os, const Token<EMapToken>& token)
+{
+
     switch (token.kind)
     {
         case EMapToken::TROLL_LAIR:

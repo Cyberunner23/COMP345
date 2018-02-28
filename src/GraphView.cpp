@@ -83,7 +83,11 @@ GraphView::GraphView()
     this->setLayout(_mainVLayout.get());
 }
 
-void GraphView::updateGraph(std::shared_ptr<Map> map)
+void GraphView::updateGraph(Map* map,
+                            std::vector<std::unique_ptr<RaceBanner>> *selectionRaceBanners,
+                            std::stack<std::unique_ptr<RaceBanner>> *remainingRaceBanners,
+                            std::vector<std::unique_ptr<SpecialPower>> *selectionSpecialPowers,
+                            std::stack<std::unique_ptr<SpecialPower>> *remainingSpecialPowers)
 {
 
 
@@ -98,7 +102,8 @@ void GraphView::updateGraph(std::shared_ptr<Map> map)
         unsigned int numTurns = map->getMapNumTurns();
         unsigned int currentTurn = map->getCurrentTurn();
 
-        std::strstream displayStr;
+        QString string;
+        QTextStream displayStr(&string);
         displayStr << "Turn: ";
         for (int i = 1; i <= numTurns; i++)
         {
@@ -112,7 +117,7 @@ void GraphView::updateGraph(std::shared_ptr<Map> map)
             }
         }
 
-        _turnCounter->setText(QString::fromStdString(displayStr.str()));
+        _turnCounter->setText(string);
     }
 
     {
@@ -138,9 +143,38 @@ void GraphView::updateGraph(std::shared_ptr<Map> map)
     {
         //Update Special Power layout
 
+        std::ofstream fstr("test.txt");
+        for(unsigned int i = 0; i < 5; ++i)
+        {
+            QString string;
+            QTextStream stream(&string);
+            stream << *((*selectionSpecialPowers)[i]);
+            _specialPowers[i]->setText(string);
+        }
+
+        {
+            QString string;
+            QTextStream stream(&string);
+            stream << *(*remainingSpecialPowers).top();
+            _specialPowers[5]->setText(string);
+        }
+
+
+        for(unsigned int i = 0; i < 5; ++i)
+        {
+            QString string;
+            QTextStream stream(&string);
+            stream << *(*selectionRaceBanners)[i];
+            _raceBanners[i]->setText(string);
+        }
+
+        {
+            QString string;
+            QTextStream stream(&string);
+            stream << *(*remainingRaceBanners).top();
+            _raceBanners[5]->setText(string);
+        }
     }
-
-
 }
 
 void GraphView::exit()

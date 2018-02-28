@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <memory>
-#include <strstream>
+#include <fstream>
 
 #include <QByteArray>
 #include <QVBoxLayout>
@@ -22,7 +22,11 @@ public:
     GraphView();
 
 public slots:
-    void updateGraph(std::shared_ptr<Map> map);
+    void updateGraph(Map* map,
+                     std::vector<std::unique_ptr<RaceBanner>> *selectionRaceBanners,
+                     std::stack<std::unique_ptr<RaceBanner>> *remainingRaceBanners,
+                     std::vector<std::unique_ptr<SpecialPower>> *selectionSpecialPowers,
+                     std::stack<std::unique_ptr<SpecialPower>> *remainingSpecialPowers);
     void exit();
 
 private:

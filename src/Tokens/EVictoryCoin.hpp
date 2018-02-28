@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include <QTextStream>
+
 #include "Tokens.hpp"
 
 enum class EVictoryCoin
@@ -13,8 +15,9 @@ enum class EVictoryCoin
 
 typedef Token<EVictoryCoin> VictoryCoin;
 
-inline std::ostream &operator<<(std::ostream &os, const Token<EVictoryCoin>& token)
+inline QTextStream &operator<<(QTextStream &os, const Token<EVictoryCoin>& token)
 {
+
     switch (token.kind)
     {
         case EVictoryCoin::VAL_1:
@@ -33,3 +36,7 @@ inline std::ostream &operator<<(std::ostream &os, const Token<EVictoryCoin>& tok
 
     return os;
 }
+
+/*inline std::ostream &operator<<(std::ostream &os, const Token<EVictoryCoin>& token)
+{
+}*/

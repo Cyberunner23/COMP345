@@ -2,6 +2,10 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <memory>
+
+#include "EVictoryCoin.hpp"
 
 template<typename TokenType>
 struct Token

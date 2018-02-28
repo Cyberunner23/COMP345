@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include <QTextStream>
+
 #include "Tokens.hpp"
 
 enum class ESpecialPower
@@ -32,10 +34,10 @@ enum class ESpecialPower
 
 typedef Token<ESpecialPower> SpecialPower;
 
-inline std::ostream &operator<<(std::ostream &os, const Token<ESpecialPower>& token)
+inline QTextStream &operator<<(QTextStream &os, const Token<ESpecialPower>& token)
 {
-    std::string status = token.isFaceUp ? "[U]" : "[D]";
-    os << status;
+
+    os << (token.isFaceUp ? "[U]" : "[D]");
 
     switch (token.kind)
     {
@@ -106,4 +108,3 @@ inline std::ostream &operator<<(std::ostream &os, const Token<ESpecialPower>& to
 
     return os;
 }
-

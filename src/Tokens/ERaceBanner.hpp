@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <string>
+#include <QTextStream>
 
 #include "Tokens.hpp"
 
@@ -25,10 +25,10 @@ enum class ERaceBanner
 
 typedef Token<ERaceBanner> RaceBanner;
 
-inline std::ostream &operator<<(std::ostream &os, const Token<ERaceBanner>& token) {
+inline QTextStream &operator<<(QTextStream &os, const Token<ERaceBanner>& token)
+{
 
-    std::string status = token.isFaceUp ? "[U]" : "[D]";
-    os << status;
+    os << (token.isFaceUp ? "[U]" : "[D]");;
 
     switch (token.kind)
     {
