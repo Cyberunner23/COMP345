@@ -36,43 +36,43 @@ VacuumTray::VacuumTray()
 
 
     //Setup Special Powers
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::ALCHEMIST)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::BERSERK)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::BIVOUACKING)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::BLANK)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::COMMANDO)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::DIPLOMAT)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::DRAGON_MASTER)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::FLYING)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::FOREST)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::FORTIFIED)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::HEROIC)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::HILL)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::MERCHANT)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::MOUNTED)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::PILLAGING)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::SEAFARING)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::SPIRIT)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::STOUT)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::SWAMP)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::UNDERWORLD)));
-    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::WEALTHY)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::ALCHEMIST,     4)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::BERSERK,       4)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::BIVOUACKING,   5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::BLANK,         0)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::COMMANDO,      4)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::DIPLOMAT,      5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::DRAGON_MASTER, 5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::FLYING,        5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::FOREST,        4)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::FORTIFIED,     3)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::HEROIC,        5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::HILL,          4)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::MERCHANT,      2)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::MOUNTED,       5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::PILLAGING,     5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::SEAFARING,     5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::SPIRIT,        5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::STOUT,         4)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::SWAMP,         4)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::UNDERWORLD,    5)));
+    _specialPowers.push_back(std::move(std::make_unique<SpecialPower>(ESpecialPower::WEALTHY,       4)));
 
     //Setup Race Banners
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::AMAZON)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::DWARVE)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::GIANT)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::ELVE)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::GHOUL)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::RATMEN)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::SKELETON)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::SORCERER)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::TRITON)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::HALFLING)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::HUMAN)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::ORC)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::WIZARD)));
-    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::TROLL)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::AMAZON,   6)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::DWARVE,   3)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::GIANT,    6)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::ELVE,     6)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::GHOUL,    5)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::RATMEN,   8)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::SKELETON, 6)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::SORCERER, 5)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::TRITON,   6)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::HALFLING, 6)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::HUMAN,    5)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::ORC,      5)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::WIZARD,   5)));
+    _raceBanners.push_back(std::move(std::make_unique<RaceBanner>(ERaceBanner::TROLL,    5)));
 
     //Setup Coins
     for (unsigned int i = 0; i < 35; i++)
@@ -126,7 +126,9 @@ bool VacuumTray::takeRandomRaceBanner(std::unique_ptr<RaceBanner> &value)
     }
 
     //Randomize race banner order
-    std::random_shuffle(_raceBanners.begin(), _raceBanners.end());
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(_raceBanners.begin(), _raceBanners.end(), g);
 
     value = std::move(*_raceBanners.begin());
     _raceBanners.erase(_raceBanners.begin());
@@ -143,7 +145,9 @@ bool VacuumTray::takeRandomSpecialPower(std::unique_ptr<SpecialPower> &value)
     }
 
     //Randomize race banner order
-    std::random_shuffle(_specialPowers.begin(), _specialPowers.end());
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(_specialPowers.begin(), _specialPowers.end(), g);
 
     value = std::move(*_specialPowers.begin());
     _specialPowers.erase(_specialPowers.begin());

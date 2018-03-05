@@ -142,8 +142,6 @@ void GraphView::updateGraph(Map* map,
 
     {
         //Update Special Power layout
-
-        std::ofstream fstr("test.txt");
         for(unsigned int i = 0; i < 5; ++i)
         {
             QString string;

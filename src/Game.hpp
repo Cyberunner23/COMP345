@@ -15,6 +15,7 @@
 
 #include "Map.hpp"
 #include "Player.hpp"
+#include "Utils.hpp"
 #include "Tokens/RemovebleStorageTray.hpp"
 #include "Tokens/VacuumTray.hpp"
 
@@ -30,7 +31,9 @@ public:
     Game() : _map(std::make_shared<Map>())
            , _vacuumTray(std::make_shared<VacuumTray>())
            , _storageTray(std::make_shared<RemovableStorageTray>())
-    {}
+    {
+        _comboCoins.resize(6);
+    }
 
     void run();
 
@@ -66,38 +69,5 @@ private:
     void showWinner();
 
     std::vector<std::string> getFileList(std::string directory, std::string ext);
-
-    template<const unsigned int minVal>
-    unsigned int getUserInput(unsigned int maxVal)
-    {
-        static_assert(minVal > 0);
-
-        std::cout << "Please enter a number between " << minVal << " and " << maxVal << "." << std::endl;
-
-        bool isValid = false;
-        unsigned int selection = 0;
-        do
-        {
-
-            while(!(std::cin >> selection)) {
-                std::cin.clear();
-                std::cin.ignore();
-                std::cout << "Please enter a number between " << minVal << " and " << maxVal << "." << std::endl;
-                continue;
-            }
-
-            if (selection >= minVal && selection <= maxVal)
-            {
-                isValid = true;
-            }
-            else
-            {
-                std::cout << "Please enter a number in between "<< minVal << "and " << maxVal << std::endl;
-            }
-        }
-        while(!isValid);
-
-        return selection;
-    }
 
 };

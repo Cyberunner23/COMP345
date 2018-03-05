@@ -78,3 +78,15 @@ inline QTextStream &operator<<(QTextStream &os, const Token<ERaceBanner>& token)
 
     return os;
 }
+
+inline std::ostream &operator<<(std::ostream &os, const Token<ERaceBanner>& token)
+{
+    QString string;
+    QTextStream displayStr(&string);
+    displayStr << token;
+
+    os << string.toStdString();
+
+    return os;
+}
+

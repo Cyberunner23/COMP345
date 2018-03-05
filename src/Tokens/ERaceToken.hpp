@@ -5,7 +5,9 @@
 
 #include <QTextStream>
 
+
 #include "Tokens.hpp"
+#include "ERaceBanner.hpp"
 
 enum class ERaceToken
 {
@@ -27,6 +29,43 @@ enum class ERaceToken
 };
 
 typedef Token<ERaceToken> RaceToken;
+
+inline ERaceToken raceBannerToRaceTokenType(ERaceBanner banner)
+{
+    switch(banner)
+    {
+        case ERaceBanner::AMAZON:
+            return ERaceToken::AMAZON;
+        case ERaceBanner::DWARVE:
+            return ERaceToken::DWARVE;
+        case ERaceBanner::WIZARD:
+            return ERaceToken::WIZARD;
+        case ERaceBanner::SKELETON:
+            return ERaceToken::SKELETON;
+        case ERaceBanner::HALFLING:
+            return ERaceToken::HALFLING;
+        case ERaceBanner::GHOUL:
+            return ERaceToken::GHOUL;
+        case ERaceBanner::ELVE:
+            return ERaceToken::ELVE;
+        case ERaceBanner::RATMEN:
+            return ERaceToken::RATMEN;
+        case ERaceBanner::GIANT:
+            return ERaceToken::GIANT;
+        case ERaceBanner::SORCERER:
+            return ERaceToken::SORCERER;
+        case ERaceBanner::HUMAN:
+            return ERaceToken::HUMAN;
+        case ERaceBanner::ORC:
+            return ERaceToken::ORC;
+        case ERaceBanner::TROLL:
+            return ERaceToken::TROLL;
+        case ERaceBanner::TRITON:
+            return ERaceToken::TRITON;
+        default:
+            return ERaceToken::LOST_TRIBE;
+    }
+}
 
 inline QTextStream &operator<<(QTextStream &os, const Token<ERaceToken>& token)
 {

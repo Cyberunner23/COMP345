@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <iostream>
 #include <string>
 
 #include <QTextStream>
@@ -105,6 +106,17 @@ inline QTextStream &operator<<(QTextStream &os, const Token<ESpecialPower>& toke
             os << "BLANK";
             break;
     }
+
+    return os;
+}
+
+inline std::ostream &operator<<(std::ostream &os, const Token<ESpecialPower>& token)
+{
+    QString string;
+    QTextStream displayStr(&string);
+    displayStr << token;
+
+    os << string.toStdString();
 
     return os;
 }

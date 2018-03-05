@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <memory>
+#include <random>
 #include <vector>
 
 #include "ERaceBanner.hpp"

@@ -1,6 +1,3 @@
-//
-// Created by cyberunner23 on 2/22/18.
-//
 
 #include "Game.hpp"
 
@@ -15,7 +12,7 @@ void Game::run()
     for (unsigned int i = 0; i < _players.size(); ++i)
     {
         std::cout << "PLAYER " << i + 1 << "'s turn" << std::endl;
-        playerTurn(_players[i]);
+        playerSetupTurn(_players[i]);
     }
 
     //remaining turns
@@ -96,7 +93,7 @@ void Game::setup()
     std::cout << "[INFO] Loaded map: " << fileName << std::endl;
 
 
-    //Set number pf players
+    //Set number of players
     std::cout << "How many players re playing?" << std::endl;
     unsigned int numPlayers = getUserInput<2>(5);
     for (unsigned int i = 0; i < numPlayers; i++)
@@ -128,6 +125,7 @@ void Game::startup()
     std::unique_ptr<RaceBanner> banner;
     while(_vacuumTray->takeRandomRaceBanner(banner))
     {
+        std::cout << "BANNER: " << *banner << " VALUE: " << banner->value << std::endl;
         _remainingRaceBanners.push(std::move(banner));
     }
 
@@ -194,7 +192,15 @@ void Game::startup()
 void Game::playerSetupTurn(std::shared_ptr<Player> player)
 {
     //pick race and special power combo
-    player->picks_race();
+    player->picks_race(
+            _selectionRaceBanners,
+            _remainingRaceBanners,
+            _selectionSpecialPowers,
+            _remainingSpecialPowers,
+            _comboCoins,
+            _coinStash
+    );
+
     //Conquers regions
     player->conquers();
     //gets victory coins
@@ -216,7 +222,7 @@ void Game::playerTurn(std::shared_ptr<Player> player)
     }
     else
     {
-        player->picks_race();
+        //player->picks_race();
     }
 
     player->scores();
