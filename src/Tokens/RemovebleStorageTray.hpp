@@ -7,6 +7,7 @@
 
 #include "ERaceToken.hpp"
 #include "Tokens.hpp"
+#include "TokenVec.hpp"
 
 class RemovableStorageTray
 {
@@ -20,6 +21,6 @@ public:
 
 private:
 
-    std::vector<std::unique_ptr<RaceToken>> _raceTokens;
+    TokenVec<RaceToken> _raceTokens;
 
 };

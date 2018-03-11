@@ -9,8 +9,6 @@
 template<const unsigned int minVal>
 unsigned int getUserInput(unsigned int maxVal)
 {
-    static_assert(minVal > 0);
-
     std::cout << "Please enter a number between " << minVal << " and " << maxVal << "." << std::endl;
 
     bool isValid = false;
@@ -41,11 +39,10 @@ unsigned int getUserInput(unsigned int maxVal)
 
 
 template <typename TokenType>
-std::unique_ptr<TokenType>&& stackRealPop(std::stack<std::unique_ptr<TokenType>>& stack)
+void stackRealPop(std::stack<std::unique_ptr<TokenType>>& stack, std::unique_ptr<TokenType>& value)
 {
-    std::unique_ptr<TokenType> token = std::move(stack.top());
+    value = std::move(stack.top());
     stack.pop();
-    return std::move(token);
 }
 
 template <typename Type>

@@ -11,6 +11,7 @@
 #include "EVictoryCoin.hpp"
 #include "EMapToken.hpp"
 #include "Tokens.hpp"
+#include "TokenVec.hpp"
 
 class VacuumTray
 {
@@ -34,45 +35,9 @@ public:
 
 private:
 
-    std::vector<std::unique_ptr<MapToken>> _mapTokens;
-    std::vector<std::unique_ptr<SpecialPower>> _specialPowers;
-    std::vector<std::unique_ptr<RaceBanner>> _raceBanners;
-    std::vector<std::unique_ptr<VictoryCoin>> _coins;
-
-
-    template<typename TokenType>
-    bool TakeTokenImpl(const TokenType& valueKind, std::unique_ptr<TokenType>& value, std::vector<std::unique_ptr<TokenType>>& var)
-    {
-
-        bool found = false;
-        unsigned int foundIndex = 0;
-        for (unsigned int i = 0; i < var.size(); i++)
-        {
-            if (*var[i] == valueKind)
-            {
-                found = true;
-                foundIndex = i;
-                break;
-            }
-        }
-
-        if (!found)
-        {
-            return false;
-        }
-
-        value = std::move(var[foundIndex]);
-        var.erase(var.begin() + foundIndex);
-        std::vector<std::unique_ptr<TokenType>>(std::move_iterator(var.begin()), std::move_iterator(var.end())).swap(var);
-
-        return true;
-    }
-
-    template<typename TokenType>
-    void PlaceTokenImpl(std::unique_ptr<TokenType>&& value, std::vector<std::unique_ptr<TokenType>>& var)
-    {
-        value->isFaceUp = true;
-        var.push_back(std::move(value));
-    }
+    TokenVec<MapToken>     _mapTokens;
+    TokenVec<SpecialPower> _specialPowers;
+    TokenVec<RaceBanner>   _raceBanners;
+    TokenVec<VictoryCoin>  _coins;
 
 };

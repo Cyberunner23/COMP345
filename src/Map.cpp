@@ -22,6 +22,18 @@ bool Map::importMap(std::string fileName)
 
     boost::read_graphml(in, _mainGraph, dp);
 
+
+    //Set node IDs
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    VertexIndexPropertyMap indexMap = boost::get(boost::vertex_index, _mainGraph);
+    std::pair<VertexIterator, VertexIterator> iterPair = boost::vertices(_mainGraph);
+
+    for(; iterPair.first != iterPair.second; ++iterPair.first)
+    {
+        dataMap[*iterPair.first].setVertexID(indexMap[*iterPair.first]);
+    }
+
+
     return isConnected();
 }
 
@@ -41,8 +53,11 @@ std::string Map::exportMapGraphViz()
 {
     std::ostringstream out;
     boost::dynamic_properties dp;
+
+    updateNodeDisplayText();
+
     dp.property("node_id", boost::get(boost::vertex_index, _mainGraph));
-    dp.property("label", boost::get(boost::vertex_index, _mainGraph));
+    dp.property("label", boost::get(vertex_displaytxt, _mainGraph));
 
     boost::write_graphviz_dp(out, _mainGraph, dp);
 
@@ -134,8 +149,10 @@ Vertex Map::addRegion(RegionNode region)
 
     VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
     VertexDisplaytxtPropertyMap displayMap = boost::get(vertex_displaytxt, _mainGraph);
+    VertexIndexPropertyMap indexMap = boost::get(boost::vertex_index, _mainGraph);
 
-    displayMap[v] = region._name;
+    region.setVertexID((int)indexMap[v]);
+    displayMap[v] = region.getDisplayText();
     dataMap[v] = std::move(region);
 
     return v;
@@ -165,4 +182,17 @@ bool Map::isConnected(SGraph &graph)
 {
     std::vector<int> component(boost::num_vertices(graph));
     return boost::connected_components(graph, &component[0]) == 1;
+}
+
+
+void Map::updateNodeDisplayText()
+{
+    std::pair<VertexIterator, VertexIterator> iterPair = boost::vertices(_mainGraph);
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    VertexDisplaytxtPropertyMap displayMap = boost::get(vertex_displaytxt, _mainGraph);
+
+    for(; iterPair.first != iterPair.second; ++iterPair.first)
+    {
+        displayMap[*iterPair.first] = dataMap[*iterPair.first].getDisplayText();
+    }
 }

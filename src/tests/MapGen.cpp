@@ -9,29 +9,29 @@ int main(int argc, char** argv)
     {
         Map map(2, 10);
 
-        RegionNode r1 (RegionType::SEA,      {RegionFeature::NONE},   false);
-        RegionNode r2 (RegionType::FARM,     {RegionFeature::MAGIC_SOURCE}, false);
-        RegionNode r3 (RegionType::FOREST,   {RegionFeature::MINE},   false);
-        RegionNode r4 (RegionType::MARSH,    {RegionFeature::CAVERN}, true);
-        RegionNode r5 (RegionType::HILL,     {RegionFeature::NONE},   false);
-        RegionNode r6 (RegionType::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false);
-        RegionNode r7 (RegionType::HILL,     {RegionFeature::NONE},   true);
-        RegionNode r8 (RegionType::SEA,      {RegionFeature::NONE},   false);
-        RegionNode r9 (RegionType::MOUNTAIN, {RegionFeature::NONE},   false);
-        RegionNode r10(RegionType::FARM,     {RegionFeature::NONE},   false);
-        RegionNode r11(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE}, false);
-        RegionNode r12(RegionType::FARM,     {RegionFeature::NONE},   true);
-        RegionNode r13(RegionType::FOREST,   {RegionFeature::NONE},   false);
-        RegionNode r14(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE}, false);
-        RegionNode r15(RegionType::HILL,     {RegionFeature::CAVERN}, false);
-        RegionNode r16(RegionType::MOUNTAIN, {RegionFeature::MINE},   false);
-        RegionNode r17(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE}, true);
-        RegionNode r18(RegionType::HILL,     {RegionFeature::CAVERN}, false);
-        RegionNode r19(RegionType::MARSH,    {RegionFeature::MINE},   false);
-        RegionNode r20(RegionType::MOUNTAIN, {RegionFeature::NONE},   false);
-        RegionNode r21(RegionType::MARSH,    {RegionFeature::NONE},   false);
-        RegionNode r22(RegionType::FOREST,   {RegionFeature::NONE},   false);
-        RegionNode r23(RegionType::SEA,      {RegionFeature::NONE},   false);
+        RegionNode r1 (RegionType::SEA,      {RegionFeature::NONE},   false, true);
+        RegionNode r2 (RegionType::FARM,     {RegionFeature::MAGIC_SOURCE},  false, true);
+        RegionNode r3 (RegionType::FOREST,   {RegionFeature::MINE},   false, true);
+        RegionNode r4 (RegionType::MARSH,    {RegionFeature::CAVERN}, true,  true);
+        RegionNode r5 (RegionType::HILL,     {RegionFeature::NONE},   false, true);
+        RegionNode r6 (RegionType::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false, true);
+        RegionNode r7 (RegionType::HILL,     {RegionFeature::NONE},   true,  false);
+        RegionNode r8 (RegionType::SEA,      {RegionFeature::NONE},   false, false);
+        RegionNode r9 (RegionType::MOUNTAIN, {RegionFeature::NONE},   false, false);
+        RegionNode r10(RegionType::FARM,     {RegionFeature::NONE},   false, false);
+        RegionNode r11(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE},  false, true);
+        RegionNode r12(RegionType::FARM,     {RegionFeature::NONE},   true,  true);
+        RegionNode r13(RegionType::FOREST,   {RegionFeature::NONE},   false, false);
+        RegionNode r14(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE},  false, false);
+        RegionNode r15(RegionType::HILL,     {RegionFeature::CAVERN}, false, false);
+        RegionNode r16(RegionType::MOUNTAIN, {RegionFeature::MINE},   false, true);
+        RegionNode r17(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE}, true, true);
+        RegionNode r18(RegionType::HILL,     {RegionFeature::CAVERN}, false, true);
+        RegionNode r19(RegionType::MARSH,    {RegionFeature::MINE},   false, true);
+        RegionNode r20(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true);
+        RegionNode r21(RegionType::MARSH,    {RegionFeature::NONE},   false, true);
+        RegionNode r22(RegionType::FOREST,   {RegionFeature::NONE},   false, false);
+        RegionNode r23(RegionType::SEA,      {RegionFeature::NONE},   false, true);
 
         Vertex v1 =  map.addRegion(r1);
         Vertex v2 =  map.addRegion(r2);
@@ -121,36 +121,36 @@ int main(int argc, char** argv)
 
         RegionNode regions[] = {
             /*0*/  RegionNode(), // index offset
-            /*1*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
-            /*2*/  RegionNode(RegionType::FOREST,   {RegionFeature::MINE},   false),
-            /*3*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-            /*4*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-            /*5*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, false),
-            /*6*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   true),
-            /*7*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   false),
-            /*8*/  RegionNode(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE}, true),
-            /*9*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   false),
-            /*10*/ RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE}, true),
-            /*11*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false),
-            /*12*/ RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true),
-            /*13*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false),
-            /*14*/ RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   true),
-            /*15*/ RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
-            /*16*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN}, false),
-            /*17*/ RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE}, false),
-            /*18*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-            /*19*/ RegionNode(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE}, false),
-            /*20*/ RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, true),
-            /*21*/ RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false),
-            /*22*/ RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE}, true),
-            /*23*/ RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true),
-            /*24*/ RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false),
-            /*25*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-            /*26*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-            /*27*/ RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false),
-            /*28*/ RegionNode(RegionType::FOREST,   {RegionFeature::MINE},   true),
-            /*29*/ RegionNode(RegionType::HILL,     {RegionFeature::CAVERN}, true),
-            /*30*/ RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
+            /*1*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, true),
+            /*2*/  RegionNode(RegionType::FOREST,   {RegionFeature::MINE},   false, true),
+            /*3*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+            /*4*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, true),
+            /*5*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, false, true),
+            /*6*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   true,  true),
+            /*7*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   false, true),
+            /*8*/  RegionNode(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE},  true, false),
+            /*9*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   false, false),
+            /*10*/ RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE},  true, false),
+            /*11*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false, false),
+            /*12*/ RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true,  false),
+            /*13*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false, true),
+            /*14*/ RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   true,  false),
+            /*15*/ RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, false),
+            /*16*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN}, false, false),
+            /*17*/ RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE},  false, false),
+            /*18*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+            /*19*/ RegionNode(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE},  false, true),
+            /*20*/ RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, true,  false),
+            /*21*/ RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false, false),
+            /*22*/ RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE},  true, false),
+            /*23*/ RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true,  false),
+            /*24*/ RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false, true),
+            /*25*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+            /*26*/ RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+            /*27*/ RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false, true),
+            /*28*/ RegionNode(RegionType::FOREST,   {RegionFeature::MINE},   true,  true),
+            /*29*/ RegionNode(RegionType::HILL,     {RegionFeature::CAVERN}, true,  false),
+            /*30*/ RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, true),
         };
 
 
@@ -248,45 +248,45 @@ int main(int argc, char** argv)
 
         RegionNode regions[] = {
                 /*0*/   RegionNode(), // index offset
-                /*1*/   RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
-                /*2*/   RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*3*/   RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, true),
-                /*4*/   RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true),
-                /*5*/   RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE}, false),
-                /*6*/   RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, false),
-                /*7*/   RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE}, true),
-                /*8*/   RegionNode(RegionType::FARM,     {RegionFeature::MINE},   true),
-                /*9*/   RegionNode(RegionType::HILL,     {RegionFeature::CAVERN}, true),
-                /*10*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*11*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false),
-                /*12*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE}, true),
-                /*13*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-                /*14*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false),
-                /*15*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   true),
-                /*16*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE}, false),
-                /*17*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
-                /*18*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   false),
-                /*19*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*20*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-                /*21*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false),
-                /*22*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false),
-                /*23*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-                /*24*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true),
-                /*25*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true),
-                /*26*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true),
-                /*27*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   true),
-                /*28*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE}, true),
-                /*29*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*30*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-                /*31*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true),
-                /*32*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE}, true),
-                /*33*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false),
-                /*34*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN}, false),
-                /*35*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE}, false),
-                /*36*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false),
-                /*37*/  RegionNode(RegionType::HILL,     {RegionFeature::MINE},   false),
-                /*38*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*39*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
+                /*1*/   RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, true),
+                /*2*/   RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, false),
+                /*3*/   RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, true,  true),
+                /*4*/   RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true,  true),
+                /*5*/   RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE},  false, true),
+                /*6*/   RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, false, true),
+                /*7*/   RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE},  true, false),
+                /*8*/   RegionNode(RegionType::FARM,     {RegionFeature::MINE},   true,  false),
+                /*9*/   RegionNode(RegionType::HILL,     {RegionFeature::CAVERN}, true,  false),
+                /*10*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, false),
+                /*11*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false, false),
+                /*12*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE},  true,  false),
+                /*13*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+                /*14*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false, false),
+                /*15*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   true,  false),
+                /*16*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE},  false, false),
+                /*17*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, false),
+                /*18*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   false, false),
+                /*19*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, true),
+                /*20*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+                /*21*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false, false),
+                /*22*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE, RegionFeature::CAVERN}, false, false),
+                /*23*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, false),
+                /*24*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true,  false),
+                /*25*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true,  false),
+                /*26*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true,  true),
+                /*27*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   true,  true),
+                /*28*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE},  true, false),
+                /*29*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, true),
+                /*30*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+                /*31*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true,  false),
+                /*32*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE},  true, false),
+                /*33*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false, true),
+                /*34*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN}, false, false),
+                /*35*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE},  false, true),
+                /*36*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false, true),
+                /*37*/  RegionNode(RegionType::HILL,     {RegionFeature::MINE},   false, true),
+                /*38*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, true),
+                /*39*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, true),
         };
 
 
@@ -440,54 +440,54 @@ int main(int argc, char** argv)
 
         RegionNode regions[] = {
                 /*0*/   RegionNode(), // index offset
-                /*1*/   RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
-                /*2*/   RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-                /*3*/   RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE}, false),
-                /*4*/   RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN}, false),
-                /*5*/   RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE}, false),
-                /*6*/   RegionNode(RegionType::FARM,     {RegionFeature::CAVERN}, true),
-                /*7*/   RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   false),
-                /*8*/   RegionNode(RegionType::FARM,     {RegionFeature::MINE},   true),
-                /*9*/   RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false),
-                /*10*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false),
-                /*11*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*12*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true),
-                /*13*/  RegionNode(RegionType::FARM,     {RegionFeature::CAVERN}, true),
-                /*14*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-                /*15*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true),
-                /*16*/  RegionNode(RegionType::HILL,     {RegionFeature::MINE},   false),
-                /*17*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true),
-                /*18*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE}, false),
-                /*19*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   true),
-                /*20*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE}, false),
-                /*21*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
-                /*22*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false),
-                /*23*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MAGIC_SOURCE}, false),
-                /*24*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true),
-                /*25*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN, RegionFeature::MINE}, false),
-                /*26*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   true),
-                /*27*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*28*/  RegionNode(RegionType::FOREST,   {RegionFeature::MINE},   false),
-                /*29*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   false),
-                /*30*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true),
-                /*31*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   true),
-                /*32*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false),
-                /*33*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true),
-                /*34*/  RegionNode(RegionType::FARM,     {RegionFeature::CAVERN}, true),
-                /*35*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   true),
-                /*36*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false),
-                /*37*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true),
-                /*38*/  RegionNode(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE}, false),
-                /*39*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false),
-                /*40*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE}, true),
-                /*41*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   false),
-                /*42*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE}, true),
-                /*43*/  RegionNode(RegionType::HILL,     {RegionFeature::MINE},   false),
-                /*44*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MAGIC_SOURCE}, false),
-                /*45*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false),
-                /*46*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false),
-                /*47*/  RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, false),
-                /*48*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false),
+                /*1*/   RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, true),
+                /*2*/   RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+                /*3*/   RegionNode(RegionType::MARSH,    {RegionFeature::MAGIC_SOURCE},  false, true),
+                /*4*/   RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN}, false, true),
+                /*5*/   RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE},  false, true),
+                /*6*/   RegionNode(RegionType::FARM,     {RegionFeature::CAVERN}, true,  true),
+                /*7*/   RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   false, false),
+                /*8*/   RegionNode(RegionType::FARM,     {RegionFeature::MINE},   true,  false),
+                /*9*/   RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false, false),
+                /*10*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false, false),
+                /*11*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, true),
+                /*12*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true,  false),
+                /*13*/  RegionNode(RegionType::FARM,     {RegionFeature::CAVERN}, true,  false),
+                /*14*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, false),
+                /*15*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true,  false),
+                /*16*/  RegionNode(RegionType::HILL,     {RegionFeature::MINE},   false, true),
+                /*17*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true,  false),
+                /*18*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE},  false, false),
+                /*19*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   true,  false),
+                /*20*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE},  false, false),
+                /*21*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, false),
+                /*22*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false, false),
+                /*23*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MAGIC_SOURCE},  false, true),
+                /*24*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   true,  false),
+                /*25*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::CAVERN, RegionFeature::MINE}, false, false),
+                /*26*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   true,  false),
+                /*27*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, true),
+                /*28*/  RegionNode(RegionType::FOREST,   {RegionFeature::MINE},   false, true),
+                /*29*/  RegionNode(RegionType::MARSH,    {RegionFeature::NONE},   false, false),
+                /*30*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   true,  false),
+                /*31*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   true,  false),
+                /*32*/  RegionNode(RegionType::HILL,     {RegionFeature::NONE},   false, false),
+                /*33*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true,  true),
+                /*34*/  RegionNode(RegionType::FARM,     {RegionFeature::CAVERN}, true,  true),
+                /*35*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   true,  false),
+                /*36*/  RegionNode(RegionType::FARM,     {RegionFeature::NONE},   false, false),
+                /*37*/  RegionNode(RegionType::MARSH,    {RegionFeature::CAVERN}, true,  false),
+                /*38*/  RegionNode(RegionType::FARM,     {RegionFeature::MAGIC_SOURCE},  false, false),
+                /*39*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MINE},   false, false),
+                /*40*/  RegionNode(RegionType::HILL,     {RegionFeature::MAGIC_SOURCE},  true, true),
+                /*41*/  RegionNode(RegionType::MARSH,    {RegionFeature::MINE},   false, true),
+                /*42*/  RegionNode(RegionType::FOREST,   {RegionFeature::MAGIC_SOURCE},  true, true),
+                /*43*/  RegionNode(RegionType::HILL,     {RegionFeature::MINE},   false, true),
+                /*44*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::MAGIC_SOURCE},  false, true),
+                /*45*/  RegionNode(RegionType::FOREST,   {RegionFeature::NONE},   false, false),
+                /*46*/  RegionNode(RegionType::MOUNTAIN, {RegionFeature::NONE},   false, true),
+                /*47*/  RegionNode(RegionType::FOREST,   {RegionFeature::CAVERN}, false, true),
+                /*48*/  RegionNode(RegionType::SEA,      {RegionFeature::NONE},   false, true),
         };
 
         Vertex v[49];

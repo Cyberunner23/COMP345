@@ -84,10 +84,10 @@ GraphView::GraphView()
 }
 
 void GraphView::updateGraph(Map* map,
-                            std::vector<std::unique_ptr<RaceBanner>> *selectionRaceBanners,
-                            std::stack<std::unique_ptr<RaceBanner>> *remainingRaceBanners,
-                            std::vector<std::unique_ptr<SpecialPower>> *selectionSpecialPowers,
-                            std::stack<std::unique_ptr<SpecialPower>> *remainingSpecialPowers)
+                            const TokenVec<RaceBanner> *selectionRaceBanners,
+                            const TokenStack<RaceBanner> *remainingRaceBanners,
+                            const TokenVec<SpecialPower> *selectionSpecialPowers,
+                            const TokenStack<SpecialPower> *remainingSpecialPowers)
 {
 
 
@@ -146,14 +146,14 @@ void GraphView::updateGraph(Map* map,
         {
             QString string;
             QTextStream stream(&string);
-            stream << *((*selectionSpecialPowers)[i]);
+            stream << *(*selectionSpecialPowers)[i];
             _specialPowers[i]->setText(string);
         }
 
         {
             QString string;
             QTextStream stream(&string);
-            stream << *(*remainingSpecialPowers).top();
+            stream << *remainingSpecialPowers->top();
             _specialPowers[5]->setText(string);
         }
 
@@ -169,7 +169,7 @@ void GraphView::updateGraph(Map* map,
         {
             QString string;
             QTextStream stream(&string);
-            stream << *(*remainingRaceBanners).top();
+            stream << *remainingRaceBanners->top();
             _raceBanners[5]->setText(string);
         }
     }

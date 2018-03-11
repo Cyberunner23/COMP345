@@ -12,6 +12,8 @@
 #include "gvc.h"
 
 #include "Map.hpp"
+#include "Tokens/TokenStack.hpp"
+#include "Tokens/TokenVec.hpp"
 
 class GraphView : public QWidget
 {
@@ -23,10 +25,10 @@ public:
 
 public slots:
     void updateGraph(Map* map,
-                     std::vector<std::unique_ptr<RaceBanner>> *selectionRaceBanners,
-                     std::stack<std::unique_ptr<RaceBanner>> *remainingRaceBanners,
-                     std::vector<std::unique_ptr<SpecialPower>> *selectionSpecialPowers,
-                     std::stack<std::unique_ptr<SpecialPower>> *remainingSpecialPowers);
+                     const TokenVec<RaceBanner> *selectionRaceBanners,
+                     const TokenStack<RaceBanner> *remainingRaceBanners,
+                     const TokenVec<SpecialPower> *selectionSpecialPowers,
+                     const TokenStack<SpecialPower> *remainingSpecialPowers);
     void exit();
 
 private:

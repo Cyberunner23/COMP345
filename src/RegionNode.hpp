@@ -34,15 +34,62 @@ enum class RegionFeature
 
 struct RegionNode
 {
-
-    std::string _name;
-
-    RegionType _type;
-    MapToken* _token;
-    std::list<RegionFeature> _features;
-    bool _isLostTribe;
+    RegionType _type;//
+    MapToken* _token;//
+    std::list<RegionFeature> _features;//
+    bool _isLostTribe;//
+    bool _isEdge;//
+    int ownerID = -1;//
 
     std::vector<RaceToken*> _raceTokens;
+
+
+    std::string getDisplayText()
+    {
+        std::string regionID = std::to_string(_vertexIndex);
+        std::string regionType = std::string(_isEdge ? "[E] ": "") + std::string(_isLostTribe ? "[L]" : "") + regionTypeStr(_type);
+
+        std::string mapToken;
+        if (_token != nullptr)
+        {
+            mapToken = "Map Token: " + mapTokenStr(*_token);
+            mapToken.append("\n");
+        }
+
+
+        std::string features;
+        for (RegionFeature& feature : _features)
+        {
+            features.append(regionFeatureStr(feature));
+            features.append(" ");
+        }
+
+        if (!features.empty())
+        {
+            features.append("\n");
+        }
+
+
+        std::string owner;
+        if (ownerID > 0)
+        {
+            owner = "Owned by player #" + std::to_string(ownerID) + "\n";
+        }
+
+
+        std::string raceTokens;
+        for (auto token : _raceTokens)
+        {
+            QString str;
+            QTextStream stream(&str);
+
+            stream << *token;
+            raceTokens.append(str.toStdString());
+            raceTokens.append("\n");
+        }
+
+        return regionID + "\n" + regionType + "\n" + mapToken + features + owner + raceTokens;
+    }
 
 
     //Serialization is my friend
@@ -61,6 +108,7 @@ struct RegionNode
             , _token(nullptr)
             , _features(std::list<RegionFeature>{RegionFeature::NONE})
             , _isLostTribe(false)
+            , _isEdge(false)
     {}
 
     //! \brief Parameterized constructor
@@ -71,13 +119,21 @@ struct RegionNode
     //! \param name Name of the region
     //! \param owner Owner of the region
     //! \param tokens Tokens placed on the region
-    RegionNode(RegionType type, std::list<RegionFeature> feature, bool isLostTribe)
+    RegionNode(RegionType type, std::list<RegionFeature> feature, bool isLostTribe, bool isEdge)
             : _type(type)
             , _features(feature)
             , _isLostTribe(isLostTribe)
+            , _isEdge(isEdge)
     {}
 
+    void setVertexID(int index)
+    {
+        _vertexIndex = index;
+    }
+
 private:
+
+    int _vertexIndex;
 
     //! Serialization function
     template <class Archive>
@@ -86,7 +142,43 @@ private:
         ar & boost::serialization::make_nvp("RegionType", _type);
         ar & boost::serialization::make_nvp("RegionFeature", _features);
         ar & boost::serialization::make_nvp("IsLostTribe", _isLostTribe);
+        ar & boost::serialization::make_nvp("IsEdge", _isEdge);
     }
+
+    std::string regionTypeStr(RegionType regionType)
+    {
+        switch (regionType)
+        {
+            case RegionType::FARM:
+                return "FARM";
+            case RegionType::FOREST:
+                return "FOREST";
+            case RegionType::HILL:
+                return "HILL";
+            case RegionType::MARSH:
+                return "MARSH";
+            case RegionType::MOUNTAIN:
+                return "MOUNTAIN";
+            case RegionType::SEA:
+                return "SEA";
+        }
+    }
+
+    std::string regionFeatureStr(RegionFeature regionFeature)
+    {
+        switch (regionFeature)
+        {
+            case RegionFeature::CAVERN:
+                return "CAVERN";
+            case RegionFeature::MAGIC_SOURCE:
+                return "MAGIC_SOURCE";
+            case RegionFeature::MINE:
+                return "MINE";
+            case RegionFeature::NONE:
+                return "";
+        }
+    }
+
 };
 
 

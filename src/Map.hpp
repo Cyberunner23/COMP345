@@ -89,6 +89,8 @@ typedef typename boost::property_map<SGraph, vertex_data_t>::type VertexDataProp
 //! Type for the PropertyMap of the displaytxt, used to get/set the data to be displlayed in the graphVis output.
 typedef typename boost::property_map<SGraph, vertex_displaytxt_t>::type VertexDisplaytxtPropertyMap;
 
+typedef typename boost::property_map<SGraph, boost::vertex_index_t>::type VertexIndexPropertyMap;
+
 
 //! Main map class
 class Map
@@ -208,6 +210,9 @@ public:
     //! \param subGraph Subgraph to be verified
     //! \return true if the subgraph is connected, false otherwise.
     bool isConnected(SGraph &subGraph);
+
+
+    void updateNodeDisplayText();
 
 private:
 

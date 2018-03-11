@@ -17,6 +17,8 @@
 #include "Player.hpp"
 #include "Utils.hpp"
 #include "Tokens/RemovebleStorageTray.hpp"
+#include "Tokens/TokenStack.hpp"
+#include "Tokens/TokenVec.hpp"
 #include "Tokens/VacuumTray.hpp"
 
 namespace fs = boost::filesystem;
@@ -40,10 +42,10 @@ public:
 signals:
 
     void updateUI(Map *map,
-                  std::vector<std::unique_ptr<RaceBanner>> *selectionRaceBanners,
-                  std::stack<std::unique_ptr<RaceBanner>> *remainingRaceBanners,
-                  std::vector<std::unique_ptr<SpecialPower>> *selectionSpecialPowers,
-                  std::stack<std::unique_ptr<SpecialPower>> *remainingSpecialPowers);
+                  const TokenVec<RaceBanner> *selectionRaceBanners,
+                  const TokenStack<RaceBanner> *remainingRaceBanners,
+                  const TokenVec<SpecialPower> *selectionSpecialPowers,
+                  const TokenStack<SpecialPower> *remainingSpecialPowers);
 
 private:
 
@@ -53,14 +55,14 @@ private:
 
     std::vector<std::shared_ptr<Player>> _players;
 
-    std::vector<std::unique_ptr<RaceBanner>> _selectionRaceBanners;
-    std::stack<std::unique_ptr<RaceBanner>> _remainingRaceBanners;
-    std::vector<std::unique_ptr<SpecialPower>> _selectionSpecialPowers;
-    std::stack<std::unique_ptr<SpecialPower>> _remainingSpecialPowers;
+    TokenVec<RaceBanner>     _selectionRaceBanners;
+    TokenStack<RaceBanner>   _remainingRaceBanners;
+    TokenVec<SpecialPower>   _selectionSpecialPowers;
+    TokenStack<SpecialPower> _remainingSpecialPowers;
     //Coins places on the combos during the selection
-    std::vector<std::vector<std::unique_ptr<VictoryCoin>>> _comboCoins;
+    std::vector<TokenVec<VictoryCoin>> _comboCoins;
 
-    std::vector<std::unique_ptr<VictoryCoin>> _coinStash;
+    TokenVec<VictoryCoin> _coinStash;
 
     void setup();
     void startup();

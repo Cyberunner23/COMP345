@@ -8,6 +8,8 @@
 #include "Map.hpp"
 #include "Utils.hpp"
 #include "Tokens/RemovebleStorageTray.hpp"
+#include "Tokens/TokenStack.hpp"
+#include "Tokens/TokenVec.hpp"
 #include "Tokens/VacuumTray.hpp"
 
 class Player
@@ -31,12 +33,12 @@ public:
 
     //! Lets user pick a race.
     void picks_race(
-            std::vector<std::unique_ptr<RaceBanner>>& banners,
-            std::stack<std::unique_ptr<RaceBanner>>& bannerStack,
-            std::vector<std::unique_ptr<SpecialPower>>& specialPowers,
-            std::stack<std::unique_ptr<SpecialPower>>& specialPowerStack,
-            std::vector<std::vector<std::unique_ptr<VictoryCoin>>>& comboCoins,
-            std::vector<std::unique_ptr<VictoryCoin>>& coinStash
+            TokenVec<RaceBanner>&               banners,
+            TokenStack<RaceBanner>&             bannerStack,
+            TokenVec<SpecialPower>&             specialPowers,
+            TokenStack<SpecialPower>&           specialPowerStack,
+            std::vector<TokenVec<VictoryCoin>>& comboCoins,
+            TokenVec<VictoryCoin>&              coinStash
     );
 
     void switchRace(std::unique_ptr<RaceBanner>&& banner, std::unique_ptr<SpecialPower>&& power);
@@ -72,7 +74,7 @@ private:
     std::shared_ptr<RemovableStorageTray> _storageTray;
     std::shared_ptr<VacuumTray> _vacuumTray;
 
-    std::vector<std::unique_ptr<RaceToken>> _raceTokens;
+    TokenVec<RaceToken> _raceTokens;
     //std::vector<std::unique_ptr<VictoryCoin>> _coins;
     std::unique_ptr<RaceBanner> _currentRace;
     std::unique_ptr<SpecialPower> _currentSpecialPower;

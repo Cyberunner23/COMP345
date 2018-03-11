@@ -19,6 +19,44 @@ enum class EMapToken
 
 typedef Token<EMapToken> MapToken;
 
+inline std::string mapTokenStr(const Token<EMapToken>& token)
+{
+    std::string str;
+
+    switch (token.kind)
+    {
+        case EMapToken::TROLL_LAIR:
+            str = "TROLL_LAIR";
+            break;
+        case EMapToken::FORTRESS:
+            str = "FORTRESS";
+            break;
+        case EMapToken::MOUNTAIN:
+            str = "MOUNTAIN";
+            break;
+        case EMapToken::ENCAMPMENT:
+            str = "ENCAMPMENT";
+            break;
+        case EMapToken::HOLES_IN_GROUND:
+            str = "HOLES_IN_GROUND";
+            break;
+        case EMapToken::HERO:
+            str = "HERO";
+            break;
+        case EMapToken::DRAGON:
+            str = "DRAGON";
+            break;
+        case EMapToken::NONE:
+            str = "";
+            break;
+        default:
+            str = "";
+            break;
+    }
+
+    return str;
+}
+
 inline QTextStream &operator<<(QTextStream &os, const Token<EMapToken>& token)
 {
 
@@ -46,7 +84,7 @@ inline QTextStream &operator<<(QTextStream &os, const Token<EMapToken>& token)
             os << "DRAGON";
             break;
         case EMapToken::NONE:
-            os << "NONE";
+            os << "";
             break;
     }
 

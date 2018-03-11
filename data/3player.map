@@ -26,6 +26,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -43,6 +44,7 @@
 		&lt;item&gt;2&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -60,6 +62,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -77,6 +80,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -94,6 +98,7 @@
 		&lt;item&gt;0&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -111,6 +116,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -128,6 +134,7 @@
 		&lt;item&gt;2&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -145,6 +152,7 @@
 		&lt;item&gt;1&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -162,6 +170,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -179,6 +188,7 @@
 		&lt;item&gt;1&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -196,6 +206,7 @@
 		&lt;item&gt;2&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -213,6 +224,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -231,6 +243,7 @@
 		&lt;item&gt;0&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -248,6 +261,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -265,6 +279,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -282,6 +297,7 @@
 		&lt;item&gt;0&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -299,6 +315,7 @@
 		&lt;item&gt;1&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -316,6 +333,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -333,6 +351,7 @@
 		&lt;item&gt;1&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -350,6 +369,7 @@
 		&lt;item&gt;0&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -367,6 +387,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -384,6 +405,7 @@
 		&lt;item&gt;1&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -401,6 +423,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -418,6 +441,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -435,6 +459,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -452,6 +477,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -469,6 +495,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -486,6 +513,7 @@
 		&lt;item&gt;2&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -503,6 +531,7 @@
 		&lt;item&gt;0&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;1&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;0&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 
@@ -520,6 +549,7 @@
 		&lt;item&gt;3&lt;/item&gt;
 	&lt;/RegionFeature&gt;
 	&lt;IsLostTribe&gt;0&lt;/IsLostTribe&gt;
+	&lt;IsEdge&gt;1&lt;/IsEdge&gt;
 &lt;/RegionNode&gt;
 &lt;/boost_serialization&gt;
 

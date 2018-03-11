@@ -34,6 +34,7 @@ void Game::run()
     emit updateUI(_map.get(), &_selectionRaceBanners, &_remainingRaceBanners, &_selectionSpecialPowers, &_remainingSpecialPowers);
 
 
+
 }
 
 
@@ -118,14 +119,13 @@ void Game::startup()
     {
         std::unique_ptr<RaceBanner> banner;
         assert(_vacuumTray->takeRandomRaceBanner(banner));
-        _selectionRaceBanners.push_back(std::move(banner));
+        _selectionRaceBanners.place_back(std::move(banner));
     }
 
     //Put the rest of the banners in a stack
     std::unique_ptr<RaceBanner> banner;
     while(_vacuumTray->takeRandomRaceBanner(banner))
     {
-        std::cout << "BANNER: " << *banner << " VALUE: " << banner->value << std::endl;
         _remainingRaceBanners.push(std::move(banner));
     }
 
@@ -134,7 +134,7 @@ void Game::startup()
     {
         std::unique_ptr<SpecialPower> token;
         assert(_vacuumTray->takeRandomSpecialPower(token));
-        _selectionSpecialPowers.push_back(std::move(token));
+        _selectionSpecialPowers.place_back(std::move(token));
     }
 
     //Put the rest of the tokens in a stack
@@ -169,22 +169,22 @@ void Game::startup()
     std::unique_ptr<VictoryCoin> coin;
     while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_1), coin))
     {
-        _coinStash.push_back(std::move(coin));
+        _coinStash.place_back(std::move(coin));
     }
 
     while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_3), coin))
     {
-        _coinStash.push_back(std::move(coin));
+        _coinStash.place_back(std::move(coin));
     }
 
     while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_5), coin))
     {
-        _coinStash.push_back(std::move(coin));
+        _coinStash.place_back(std::move(coin));
     }
 
     while(_vacuumTray->takeToken(VictoryCoin(EVictoryCoin::VAL_10), coin))
     {
-        _coinStash.push_back(std::move(coin));
+        _coinStash.place_back(std::move(coin));
     }
 
 }

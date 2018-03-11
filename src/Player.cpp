@@ -2,12 +2,12 @@
 #include <spandsp.h>
 #include "Player.hpp"
 
-void Player::picks_race(std::vector<std::unique_ptr<RaceBanner>>& banners,
-                        std::stack<std::unique_ptr<RaceBanner>>& bannerStack,
-                        std::vector<std::unique_ptr<SpecialPower>>& specialPowers,
-                        std::stack<std::unique_ptr<SpecialPower>>& specialPowerStack,
-                        std::vector<std::vector<std::unique_ptr<VictoryCoin>>>& comboCoins,
-                        std::vector<std::unique_ptr<VictoryCoin>>& coinStash)
+void Player::picks_race(TokenVec<RaceBanner>&               banners,
+                        TokenStack<RaceBanner>&             bannerStack,
+                        TokenVec<SpecialPower>&             specialPowers,
+                        TokenStack<SpecialPower>&           specialPowerStack,
+                        std::vector<TokenVec<VictoryCoin>>& comboCoins,
+                        TokenVec<VictoryCoin>&              coinStash)
 {
     assert(banners.size() == 5);
     assert(specialPowers.size() == 5);
@@ -24,8 +24,10 @@ void Player::picks_race(std::vector<std::unique_ptr<RaceBanner>>& banners,
 
         std::cout << "[5] " << *specialPowerStack.top() << " " << *bannerStack.top() << std::endl;
 
-        unsigned int selection = getUserInput<1>(6);
+        unsigned int selection = getUserInput<0>(5);
 
+
+        std::cout << "HIT" << std::endl;
 
         //Take care of the coin situation
         unsigned int numOneCoin = 0;
@@ -61,25 +63,23 @@ void Player::picks_race(std::vector<std::unique_ptr<RaceBanner>>& banners,
             }
 
             //Put it in the combo
-            comboCoins[i].push_back(std::move(vCoin));
+            comboCoins[i].place_back(std::move(vCoin));
         }
         std::cout << "Put down " << cost << " coins to get the combo" << std::endl;
 
         //Grab coins that are already in the chosen combo
         std::cout << "Got " << comboCoins[selection].size() << " victory tokens from the selected combo" << std::endl;
-        for (unsigned int i = 0; i < comboCoins[selection].size(); ++i)
-        {
-            std::unique_ptr<VictoryCoin> coin;
-            moveOutToken<VictoryCoin>(coin, comboCoins[selection], i);
-            coins.push_back(std::move(coin));
 
+        std::unique_ptr<VictoryCoin> coin;
+        while(comboCoins[selection].take(0, coin))
+        {
+            coins.push_back(std::move(coin));
             //Move up the comboCoins
             // take out the slot for that selection
             eraseAndShrink(comboCoins, selection);
             // resize back to a size of 6
             comboCoins.resize(6);
         }
-
 
         //Get the combo
         //Case 1: selected top of the stack
@@ -91,8 +91,13 @@ void Player::picks_race(std::vector<std::unique_ptr<RaceBanner>>& banners,
                 declineCurrentRace();
             }
 
-            _currentRace = std::move(stackRealPop(bannerStack));
-            _currentSpecialPower = std::move(stackRealPop(specialPowerStack));
+            std::unique_ptr<RaceBanner> banner;
+            std::unique_ptr<SpecialPower> power;
+
+            bannerStack.pop(banner);
+            specialPowerStack.pop(power);
+            _currentRace = std::move(banner);
+            _currentSpecialPower = std::move(power);
 
         }
         else //Case 2, not in the stack
@@ -103,15 +108,11 @@ void Player::picks_race(std::vector<std::unique_ptr<RaceBanner>>& banners,
                 declineCurrentRace();
             }
 
-            /*for(auto& banner : banners)
-            {
-                std::cout << banner->value << std::endl;
-            }*/
-
             std::unique_ptr<RaceBanner> banner;
             std::unique_ptr<SpecialPower> power;
-            moveOutToken(banner, banners, selection);
-            moveOutToken(power, specialPowers, selection);
+
+            banners.take(selection, banner);
+            specialPowers.take(selection, power);
             _currentRace = std::move(banner);
             _currentSpecialPower = std::move(power);
 
@@ -122,8 +123,11 @@ void Player::picks_race(std::vector<std::unique_ptr<RaceBanner>>& banners,
             assert(_currentSpecialPower != nullptr);
 
             //Replenish the combos
-            banners.push_back(std::move(stackRealPop(bannerStack)));
-            specialPowers.push_back(std::move(stackRealPop(specialPowerStack)));
+            bannerStack.pop(banner);
+            specialPowerStack.pop(power);
+            std::cout << "Replenishing with " << *banner << " " << *power << std::endl;
+            banners.place_back(std::move(banner));
+            specialPowers.place_back(std::move(power));
         }
 
         //Handle wealthy special power case
@@ -157,7 +161,7 @@ void Player::picks_race(std::vector<std::unique_ptr<RaceBanner>>& banners,
             //std::cout << "HIT2" << std::endl;
             std::unique_ptr<RaceToken> token;
             _storageTray->takeRaceToken(RaceToken(tokenType), token);
-            _raceTokens.push_back(std::move(token));
+            _raceTokens.place_back(std::move(token));
             //std::cout << "HIT3" << std::endl;
         }
 
