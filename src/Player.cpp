@@ -26,9 +26,6 @@ void Player::picks_race(TokenVec<RaceBanner>&               banners,
 
         unsigned int selection = getUserInput<0>(5);
 
-
-        std::cout << "HIT" << std::endl;
-
         //Take care of the coin situation
         unsigned int numOneCoin = 0;
         for (auto& coin : coins)
@@ -195,15 +192,73 @@ void Player::declineCurrentRace()
     std::cout << "UNIMPLEMENTED: declineCurrentRace" << std::endl;
 }
 
+void Player::firstConquer()
+{
+
+    /*Vertex regionVertex;
+    bool isValidRegion = false;
+    do
+    {
+        std::cout << "FIRST CONQUEST" << std::endl;
+        std::cout << "Select a region by its ID:" << std::endl;
+        unsigned int selectedRegion = getUserInput<0>(_map->getNumRegions() - 1);
+
+        _map->findVertex(selectedRegion, regionVertex);
+
+        if (_map->isRegionOnEdge(regionVertex) || _map->isRegionConnectedToSea(regionVertex))
+        {
+            isValidRegion = true;
+            std::cout << "HANDLE CASE WHEN ANOTHER PLAYE IS ALREADY THERE" << std::endl;
+        }
+        else
+        {
+            std::cout << "This is not a valid region for first conquest!" << std::endl;
+        }
+
+    } while (!isValidRegion);
+
+
+    //We have our region to do the initial conquering
+    bool hasMapToken = _map->regionHasMapToken(regionVertex);
+    std::cout << "How many token do you want to put on this region?" << std::endl;
+    unsigned int count = (hasMapToken ? getUserInput<3>(_raceTokens.size()) : getUserInput<2>(_raceTokens.size()));
+
+
+    //Move token to region.
+    for (unsigned int i = 0; i < count; ++i)
+    {
+        std::unique_ptr<RaceToken> token;
+        _raceTokens.take(0, token);
+        //_map->addRaceTokenToRegion(regionVertex, token);
+    }
+
+    _isFirstTurn = false;*/
+}
+
 void Player::conquers()
 {
-    std::cout << "called: conquers()" << std::endl;
+
+    if (_isFirstTurn)
+    {
+        firstConquer();
+    }
+
+    do {
+
+
+
+
+
+    } while (false);
+
 }
 
 void Player::scores()
 {
     std::cout << "called: scores()" << std::endl;
 }
+
+
 
 /*std::vector<std::unique_ptr<RaceToken>>* Player::getRaceTokens()
 {

@@ -13,6 +13,7 @@
 
 #include "Tokens/EMapToken.hpp"
 #include "Tokens/ERaceToken.hpp"
+#include "Tokens/TokenVec.hpp"
 
 enum class RegionType
 {
@@ -41,7 +42,7 @@ struct RegionNode
     bool _isEdge;//
     int ownerID = -1;//
 
-    std::vector<RaceToken*> _raceTokens;
+    TokenVec<RaceToken> _raceTokens;
 
 
     std::string getDisplayText()
@@ -77,8 +78,8 @@ struct RegionNode
         }
 
 
-        std::string raceTokens;
-        for (auto token : _raceTokens)
+        /*std::string raceTokens;
+        for (const auto& token : _raceTokens.data())
         {
             QString str;
             QTextStream stream(&str);
@@ -86,9 +87,9 @@ struct RegionNode
             stream << *token;
             raceTokens.append(str.toStdString());
             raceTokens.append("\n");
-        }
+        }*/
 
-        return regionID + "\n" + regionType + "\n" + mapToken + features + owner + raceTokens;
+        return regionID + "\n" + regionType + "\n" + mapToken + features + owner /*+ raceTokens*/;
     }
 
 

@@ -44,6 +44,8 @@ public:
     void switchRace(std::unique_ptr<RaceBanner>&& banner, std::unique_ptr<SpecialPower>&& power);
     void declineCurrentRace();
 
+    void firstConquer();
+
     //! Lets the user conquer a region.
     void conquers();
 
@@ -82,6 +84,8 @@ private:
     std::string _summarySheet = "sw_help_en.pdf";
 
     DiceRollingFacility _dice;
+
+    bool _isFirstTurn = true;
 
 
 };

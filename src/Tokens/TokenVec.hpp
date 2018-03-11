@@ -84,6 +84,11 @@ public:
         return _vec[index];
     }
 
+    /*const std::vector<std::unique_ptr<TokenType>>& data()
+    {
+        return _vec;
+    }*/
+
 private:
 
     std::vector<std::unique_ptr<TokenType>> _vec;

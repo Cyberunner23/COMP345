@@ -83,6 +83,9 @@ typedef typename boost::graph_traits<SGraph>::edge_descriptor Edge;
 //! Type for the vertex iterator, used to go through the list of vertices
 typedef typename boost::graph_traits<SGraph>::vertex_iterator VertexIterator;
 
+typedef typename boost::graph_traits<SGraph>::adjacency_iterator AdjacencyIterator;
+
+
 //! Type for the PropertyMap of the vertex data.
 //! Used to extract the node data.
 typedef typename boost::property_map<SGraph, vertex_data_t>::type VertexDataPropertyMap;
@@ -213,6 +216,15 @@ public:
 
 
     void updateNodeDisplayText();
+
+    /*bool findVertex(int index, Vertex& vertex);
+    bool isRegionOnEdge(const Vertex& vertex);
+    bool isRegionConnectedToSea(const Vertex& vertex);
+    bool regionHasMapToken(const Vertex& vertex);*/
+    //void addRaceTokenToRegion(const Vertex& vertex, std::unique_ptr<RaceToken>& token);
+    /*bool areRegiongAdjacent(const Vertex& v1, const Vertex& v2, const std::unique_ptr<SpecialPower>& power);
+
+    unsigned int getNumRegions();*/
 
 private:
 
