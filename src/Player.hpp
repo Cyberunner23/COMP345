@@ -22,11 +22,17 @@ public:
     //! Contructor for the player
     //! \param map A pointer to the map
     //! \param gameDeck A poointer to the Game Deck
-    Player(std::shared_ptr<Map> map, std::shared_ptr<RemovableStorageTray> storageTray, std::shared_ptr<VacuumTray> vacuumTray)
+    Player(std::shared_ptr<Map> map,
+           std::shared_ptr<RemovableStorageTray> storageTray,
+           std::shared_ptr<VacuumTray> vacuumTray,
+           std::shared_ptr<std::vector<std::shared_ptr<Player>>> players,
+           int playerID)
             : _ownedRegions(map->createSubGraph())
             , _map(std::move(map))
             , _storageTray(storageTray)
             , _vacuumTray(vacuumTray)
+            , _players(players)
+            , _playerID(playerID)
             , _currentRace(nullptr)
             , _currentSpecialPower(nullptr)
     {}
@@ -44,30 +50,39 @@ public:
     void switchRace(std::unique_ptr<RaceBanner>&& banner, std::unique_ptr<SpecialPower>&& power);
     void declineCurrentRace();
 
+    bool isValidRegion(const Vertex& v)
+    {
+        if (_isFirstTurn)
+        {
+            return _map->isRegionOnEdge(v) || _map->isRegionConnectedToSea(v);
+        }
+        else
+        {
+            return _map->areRegionsAdjacent(_ownedRegions, v, _currentSpecialPower);
+        }
+    }
+
+    //void firstConquer();
+
     //! Lets the user conquer a region.
     void conquers();
 
     //! Gets the user's score.
     void scores();
 
+    void redeploy(unsigned int count);
+    void redeploy();
 
-    /*//! Gets a pointer to the player's race token vector.
-    std::vector<std::unique_ptr<RaceToken>>* getRaceTokens();
+    void giveBackRaceToken(std::unique_ptr<RaceToken> && token);
 
-    //! Gets a pointher to the player's current race banner.
-    RaceBanner* getRaceBanner();
-
-    //!Gets a pointer to the player's current special power.
-    SpecialPower* getSpecialPower();
-
-
-    //! Get number of regions that the player owns
-    unsigned int getOwnedRegionCount();*/
+    int numTokensRequiredToConquer(const Vertex& v);
 
 
 private:
 
     SGraph& _ownedRegions;
+
+    std::shared_ptr<std::vector<std::shared_ptr<Player>>> _players;
 
     std::shared_ptr<Map> _map;
 
@@ -75,7 +90,6 @@ private:
     std::shared_ptr<VacuumTray> _vacuumTray;
 
     TokenVec<RaceToken> _raceTokens;
-    //std::vector<std::unique_ptr<VictoryCoin>> _coins;
     std::unique_ptr<RaceBanner> _currentRace;
     std::unique_ptr<SpecialPower> _currentSpecialPower;
 
@@ -83,5 +97,8 @@ private:
 
     DiceRollingFacility _dice;
 
+    bool _isFirstTurn = true;
+
+    int _playerID;
 
 };

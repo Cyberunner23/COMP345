@@ -39,10 +39,9 @@ struct RegionNode
     std::list<RegionFeature> _features;//
     bool _isLostTribe;//
     bool _isEdge;//
-    int ownerID = -1;//
+    int ownerID;//
 
     std::vector<RaceToken*> _raceTokens;
-
 
     std::string getDisplayText()
     {
@@ -109,6 +108,7 @@ struct RegionNode
             , _features(std::list<RegionFeature>{RegionFeature::NONE})
             , _isLostTribe(false)
             , _isEdge(false)
+            , ownerID(-1)
     {}
 
     //! \brief Parameterized constructor
@@ -124,11 +124,18 @@ struct RegionNode
             , _features(feature)
             , _isLostTribe(isLostTribe)
             , _isEdge(isEdge)
+            , ownerID(-1)
     {}
 
     void setVertexID(int index)
     {
         _vertexIndex = index;
+    }
+
+    bool hasFeature(RegionFeature feature)
+    {
+        auto it = std::find(_features.begin(), _features.end(), feature);
+        return it != _features.end();
     }
 
 private:

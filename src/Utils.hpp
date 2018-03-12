@@ -6,13 +6,13 @@
 #include <stack>
 #include <vector>
 
-template<const unsigned int minVal>
-unsigned int getUserInput(unsigned int maxVal)
+template<const int minVal>
+int getUserInput(int maxVal)
 {
     std::cout << "Please enter a number between " << minVal << " and " << maxVal << "." << std::endl;
 
     bool isValid = false;
-    unsigned int selection = 0;
+    int selection = 0;
     do
     {
 
@@ -29,7 +29,7 @@ unsigned int getUserInput(unsigned int maxVal)
         }
         else
         {
-            std::cout << "Please enter a number in between "<< minVal << "and " << maxVal << std::endl;
+            std::cout << "Please enter a number in between "<< minVal << " and " << maxVal << std::endl;
         }
     }
     while(!isValid);

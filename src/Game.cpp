@@ -9,10 +9,10 @@ void Game::run()
 
 
     //First turn
-    for (unsigned int i = 0; i < _players.size(); ++i)
+    for (unsigned int i = 0; i < _players->size(); ++i)
     {
         std::cout << "PLAYER " << i + 1 << "'s turn" << std::endl;
-        playerSetupTurn(_players[i]);
+        playerSetupTurn((*_players)[i]);
     }
 
     //remaining turns
@@ -20,10 +20,10 @@ void Game::run()
     {
         _map->incrementCurrentTurn();
         //Play a turn
-        for (unsigned int i = 0; i < _players.size(); ++i)
+        for (unsigned int i = 0; i < _players->size(); ++i)
         {
             std::cout << "PLAYER " << i + 1 << "'s turn" << std::endl;
-            playerTurn(_players[i]);
+            playerTurn((*_players)[i]);
         }
     }
 
@@ -32,8 +32,6 @@ void Game::run()
     showWinner();
 
     emit updateUI(_map.get(), &_selectionRaceBanners, &_remainingRaceBanners, &_selectionSpecialPowers, &_remainingSpecialPowers);
-
-
 
 }
 
@@ -99,7 +97,7 @@ void Game::setup()
     unsigned int numPlayers = getUserInput<2>(5);
     for (unsigned int i = 0; i < numPlayers; i++)
     {
-        _players.push_back(std::make_shared<Player>(_map, _storageTray, _vacuumTray));
+        _players->push_back(std::make_shared<Player>(_map, _storageTray, _vacuumTray, _players, i));
     }
 
     std::cout << "[INFO]: created " << numPlayers << " players." << std::endl;
@@ -148,7 +146,7 @@ void Game::startup()
 
 
     //Give players their initial coins
-    for(auto& player : _players)
+    for(auto& player : *_players)
     {
         bool isSuccess = true;
 
@@ -206,6 +204,9 @@ void Game::playerSetupTurn(std::shared_ptr<Player> player)
     //gets victory coins
     //calculated coins based on conquered regions
     player->scores();
+
+    //After conquest, player can move their tokens around
+    player->redeploy();
 }
 
 void Game::playerTurn(std::shared_ptr<Player> player)
@@ -236,10 +237,10 @@ void Game::showWinner()
     //Figure out who wins
     unsigned int maxCoins = 0;
     unsigned int playerNum = 0;
-    for (unsigned int i = 0; i < _players.size(); ++i)
+    for (unsigned int i = 0; i < _players->size(); ++i)
     {
         unsigned int balance = 0;
-        for (auto& coin : _players[i]->coins)
+        for (auto& coin : (*_players)[i]->coins)
         {
             switch (coin->kind)
             {

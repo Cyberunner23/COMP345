@@ -35,6 +35,7 @@ public:
            , _storageTray(std::make_shared<RemovableStorageTray>())
     {
         _comboCoins.resize(6);
+        _players = std::make_shared<std::vector<std::shared_ptr<Player>>>();
     }
 
     void run();
@@ -53,7 +54,7 @@ private:
     std::shared_ptr<RemovableStorageTray> _storageTray;
     std::shared_ptr<VacuumTray> _vacuumTray;
 
-    std::vector<std::shared_ptr<Player>> _players;
+    std::shared_ptr<std::vector<std::shared_ptr<Player>>> _players;
 
     TokenVec<RaceBanner>     _selectionRaceBanners;
     TokenStack<RaceBanner>   _remainingRaceBanners;

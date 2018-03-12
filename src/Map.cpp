@@ -196,3 +196,128 @@ void Map::updateNodeDisplayText()
         displayMap[*iterPair.first] = dataMap[*iterPair.first].getDisplayText();
     }
 }
+
+bool Map::findVertex(int index, Vertex& vertex)
+{
+    std::pair<VertexIterator, VertexIterator> iterPair = boost::vertices(_mainGraph);
+    VertexIndexPropertyMap indexMap = boost::get(boost::vertex_index, _mainGraph);
+    for(; iterPair.first != iterPair.second; ++iterPair.first)
+    {
+        if (indexMap[*iterPair.first] == index)
+        {
+            vertex = *iterPair.first;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Map::isRegionOnEdge(const Vertex &vertex)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    return dataMap[vertex]._isEdge;
+}
+
+bool Map::isRegionConnectedToSea(const Vertex &vertex)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    AdjacencyIterator it, end;
+    boost::tie(it, end) = boost::adjacent_vertices(vertex, _mainGraph);
+    for(; it != end; ++it)
+    {
+        if (dataMap[*it]._type == RegionType::SEA && dataMap[*it]._isEdge)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Map::regionHasMapToken(const Vertex &vertex)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    return dataMap[vertex]._token != nullptr;
+}
+
+void Map::addRaceTokenToRegion(const Vertex &vertex, std::unique_ptr<RaceToken> &token)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    dataMap[vertex]._raceTokens.push_back(token.get());
+    token = nullptr;
+}
+
+
+bool Map::areRegionsAdjacent(const Vertex &v1, const Vertex &v2, const std::unique_ptr<SpecialPower> &power)
+{
+    //Are they physically adjacent
+    if (boost::edge(v1, v2, _mainGraph).second)
+    {
+        return true;
+    }
+    //Test for "fake" adjacency due to special power
+    if (power->kind == ESpecialPower::FLYING)
+    {
+        return true;
+    }
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    RegionNode region = dataMap[v2];
+    auto cavernFeature = std::find(region._features.begin(), region._features.end(), RegionFeature::CAVERN);
+    if (power->kind == ESpecialPower::UNDERWORLD && cavernFeature != region._features.end())
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Map::areRegionsAdjacent(SGraph& subGraph, const Vertex &v2, const std::unique_ptr<SpecialPower> &power)
+{
+    std::pair<VertexIterator, VertexIterator> iterPair = boost::vertices(subGraph);
+    bool isAdjacent = false;
+
+    for(; iterPair.first != iterPair.second; ++iterPair.first)
+    {
+        Vertex globalVertex = subGraph.local_to_global(*iterPair.first);
+        isAdjacent |= areRegionsAdjacent(globalVertex, v2, power);
+    }
+
+    return isAdjacent;
+}
+
+
+unsigned int Map::getNumRegions()
+{
+    return (unsigned int)boost::num_vertices(_mainGraph);
+}
+
+int Map::currentRegionOwner(const Vertex &v)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    return dataMap[v].ownerID;
+}
+
+void Map::setRegionOwner(const Vertex &v, int ownerID)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    dataMap[v].ownerID = ownerID;
+}
+
+void Map::takeRaceTokensFromRegion(const Vertex &v, TokenVec<RaceToken> &tokens)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    for (unsigned int i = 0; i < dataMap[v]._raceTokens.size(); ++i)
+    {
+        std::unique_ptr<RaceToken> token(dataMap[v]._raceTokens.back());
+        dataMap[v]._raceTokens.pop_back();
+        tokens.place_back(std::move(token));
+    }
+}
+
+
+
+
+void Map::putRaceTokenInRegion(const Vertex &v, std::unique_ptr<RaceToken> &&token)
+{
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, _mainGraph);
+    dataMap[v]._raceTokens.push_back(token.get());
+}
+

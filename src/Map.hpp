@@ -29,6 +29,7 @@
 #include "RegionNode.hpp"
 #include "Tokens/VacuumTray.hpp"
 #include "Tokens/RemovebleStorageTray.hpp"
+#include "Utils.hpp"
 
 
 //! Custom property for vertex data
@@ -91,6 +92,7 @@ typedef typename boost::property_map<SGraph, vertex_displaytxt_t>::type VertexDi
 
 typedef typename boost::property_map<SGraph, boost::vertex_index_t>::type VertexIndexPropertyMap;
 
+typedef typename boost::graph_traits<SGraph>::adjacency_iterator AdjacencyIterator;
 
 //! Main map class
 class Map
@@ -213,6 +215,21 @@ public:
 
 
     void updateNodeDisplayText();
+
+    bool findVertex(int index, Vertex& vertex);
+    bool isRegionOnEdge(const Vertex& vertex);
+    bool isRegionConnectedToSea(const Vertex& vertex);
+    bool regionHasMapToken(const Vertex& vertex);
+    void addRaceTokenToRegion(const Vertex& vertex, std::unique_ptr<RaceToken>& token);
+    bool areRegionsAdjacent(SGraph& subGraph, const Vertex &v2, const std::unique_ptr<SpecialPower> &power);
+    bool areRegionsAdjacent(const Vertex &v1, const Vertex &v2, const std::unique_ptr<SpecialPower> &power);
+
+    int currentRegionOwner(const Vertex& v);
+    void setRegionOwner(const Vertex& v, int ownerID);
+    void takeRaceTokensFromRegion(const Vertex& v, TokenVec<RaceToken>& tokens);
+    void putRaceTokenInRegion(const Vertex& v, std::unique_ptr<RaceToken>&& token);
+
+    unsigned int getNumRegions();
 
 private:
 

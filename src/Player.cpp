@@ -26,9 +26,6 @@ void Player::picks_race(TokenVec<RaceBanner>&               banners,
 
         unsigned int selection = getUserInput<0>(5);
 
-
-        std::cout << "HIT" << std::endl;
-
         //Take care of the coin situation
         unsigned int numOneCoin = 0;
         for (auto& coin : coins)
@@ -158,11 +155,9 @@ void Player::picks_race(TokenVec<RaceBanner>&               banners,
         std::cout << "HEY! " << numRaceTokens << std::endl;
         for (unsigned int i = 0; i < numRaceTokens; ++i)
         {
-            //std::cout << "HIT2" << std::endl;
             std::unique_ptr<RaceToken> token;
             _storageTray->takeRaceToken(RaceToken(tokenType), token);
             _raceTokens.place_back(std::move(token));
-            //std::cout << "HIT3" << std::endl;
         }
 
         std::cout << "TODO: TAKE CARE OF _raceTokens WHEN PUT IN DECLINE" << std::endl;
@@ -197,30 +192,283 @@ void Player::declineCurrentRace()
 
 void Player::conquers()
 {
-    std::cout << "called: conquers()" << std::endl;
+
+    bool regionConquered = false;
+    do {
+
+        Vertex regionVertex;
+        bool isValidRegion = false;
+
+        std::cout << "Select a region by its ID:" << std::endl;
+        unsigned int selectedRegion = getUserInput<0>(_map->getNumRegions() - 1);
+        _map->findVertex(selectedRegion, regionVertex);
+
+        if (this->isValidRegion(regionVertex))
+        {
+            //DO conquering
+            std::cout << "How many race tokens do you want to deploy in this region? Select 0 to skip and select a new region" << std::endl;
+            unsigned int selection = getUserInput<0>(_raceTokens.size());
+            if (selection == 0)
+            {
+                regionConquered = false;
+                continue;
+            }
+            else
+            {
+                int numTokensRequiredToConquer = this->numTokensRequiredToConquer(regionVertex);
+
+                if (numTokensRequiredToConquer > _raceTokens.size())
+                {
+                    unsigned int diceValue = _dice.getDiceValue(1)[0];
+                    std::cout << "Not enough tokens... rolling dice..." << std::endl;
+                    std::cout << "Got a value of " << diceValue << std::endl;
+                    numTokensRequiredToConquer -= diceValue;
+                }
+
+                if (numTokensRequiredToConquer > _raceTokens.size())
+                {
+                    std::cout << "You don't have enough tokens to conquer this region, redeploy them somewhere else..." << std::endl;
+                    redeploy(_raceTokens.size());
+                    regionConquered = true;
+                    continue;
+                }
+                else if (numTokensRequiredToConquer > selection)
+                {
+                    std::cout << "You need to put more tokens to conquer it..." << std::endl;
+                    regionConquered = false;
+                    continue;
+                }
+                else if (numTokensRequiredToConquer < 0)
+                {
+                    std::cout << "This region is invulnerable to conquering..." << std::endl;
+                    regionConquered = false;
+                    continue;
+                }
+                else
+                {
+                    //Ok we can do the conquering for real now
+
+
+                    TokenVec<RaceToken> tokensFromRegion;
+                    _map->takeRaceTokensFromRegion(regionVertex, tokensFromRegion);
+
+                    //take the tokens from the region, put on back in tray, give rest to conquered player, let conquered player redeploy
+                    int regionOwner = _map->currentRegionOwner(regionVertex);
+                    if (tokensFromRegion.size() > 0 && regionOwner > 0)
+                    {
+
+                        //Take out one token and put it in the tray
+                        std::unique_ptr<RaceToken> token;
+                        tokensFromRegion.take(0, token);
+                        _storageTray->placeRaceToken(std::move(token));
+
+                        //Give back the remaining race tokens to the conquered player
+                        unsigned int i = 0;
+                        for (; i < tokensFromRegion.size(); ++i)
+                        {
+                            tokensFromRegion.take(0, token);
+                            (*_players)[regionOwner]->giveBackRaceToken(std::move(token));
+                        }
+
+                        (*_players)[regionOwner]->redeploy(i);
+                    }
+                    else if (tokensFromRegion.size() > 0 && regionOwner < 0)
+                    {
+                        //remove the lost tribe
+                        std::unique_ptr<RaceToken> token;
+                        tokensFromRegion.take(0, token);
+                        _storageTray->placeRaceToken(std::move(token));
+                    }
+
+                    //deploy to the conquered region
+                    for (unsigned int i = 0; i < selection; ++i)
+                    {
+                        std::unique_ptr<RaceToken> token;
+                        _raceTokens.take(0, token);
+                        _map->putRaceTokenInRegion(regionVertex, std::move(token));
+                    }
+
+                    //we now own the region
+                    _map->setRegionOwner(regionVertex, _playerID);
+
+                    regionConquered = true;
+                    continue;
+                }
+            }
+        }
+        else
+        {
+            std::cout << "An invalid region was selected!" << std::endl;
+            regionConquered = false;
+            continue;
+        }
+
+    } while (!regionConquered);
+
+    _isFirstTurn = false;
 }
 
 void Player::scores()
 {
-    std::cout << "called: scores()" << std::endl;
+
+    //Base number of coins
+    unsigned int numOwnedRegions = boost::num_vertices(_ownedRegions);
+
+    //Apply modifiers
+
+    //Transfer coins ot player
+
+    std::cout << "TODO: CALC SCORE" << std::endl;
 }
 
-/*std::vector<std::unique_ptr<RaceToken>>* Player::getRaceTokens()
+/*void Player::firstConquer()
 {
-    return &_raceTokens;
-}
-
-RaceBanner* Player::getRaceBanner()
-{
-    return _currentRace.get();
-}
-
-SpecialPower* Player::getSpecialPower()
-{
-    return _currentSpecialPower.get();
-}
-
-unsigned int Player::getOwnedRegionCount()
-{
-    return (unsigned int)boost::num_vertices(_ownedRegions);
+    Vertex regionVertex;
+    bool isValidRegion = false;
+    do
+    {
+        std::cout << "FIRST CONQUEST" << std::endl;
+        std::cout << "Select a region by its ID:" << std::endl;
+        unsigned int selectedRegion = getUserInput<0>(_map->getNumRegions() - 1);
+        _map->findVertex(selectedRegion, regionVertex);
+        if (_map->isRegionOnEdge(regionVertex) || _map->isRegionConnectedToSea(regionVertex))
+        {
+            isValidRegion = true;
+            std::cout << "HANDLE CASE WHEN ANOTHER PLAYE IS ALREADY THERE" << std::endl;
+        }
+        else
+        {
+            std::cout << "This is not a valid region for first conquest!" << std::endl;
+        }
+    } while (!isValidRegion);
+    //We have our region to do the initial conquering
+    bool hasMapToken = _map->regionHasMapToken(regionVertex);
+    std::cout << "How many token do you want to put on this region?" << std::endl;
+    unsigned int count = (hasMapToken ? getUserInput<3>(_raceTokens.size()) : getUserInput<2>(_raceTokens.size()));
+    //Move token to region.
+    for (unsigned int i = 0; i < count; ++i)
+    {
+        std::unique_ptr<RaceToken> token;
+        _raceTokens.take(0, token);
+        _map->addRaceTokenToRegion(regionVertex, token);
+    }
+    _isFirstTurn = false;
 }*/
+
+void Player::redeploy(unsigned int count)
+{
+
+    //place count tokens on owned regions
+    std::cout << "Redeploy " << count << " tokens for player: " << _playerID << std::endl;
+
+    bool isDone = false;
+
+    do {
+        std::cout << "Ender a region ID you own to redistribute tokens, select -1 to end redeploy." << std::endl;
+        int selection = getUserInput<-1>(_map->getNumRegions() - 1);
+
+        if (selection == -1)
+        {
+            isDone = true;
+            continue;
+        }
+
+        Vertex regionVertex;
+        _map->findVertex(selection, regionVertex);
+
+        if (_map->currentRegionOwner(regionVertex) != _playerID)
+        {
+            std::cout << "You do not own this region!!" << std::endl;
+            isDone = false;
+            continue;
+        }
+
+        //TODO: check if region has the same race
+
+        std::cout << "How many tokens do you want to place here?" << std::endl;
+        selection = getUserInput<0>(count);
+        count -= selection;
+
+        for (unsigned int i = 0; i < selection; ++i)
+        {
+            std::unique_ptr<RaceToken> token;
+            _raceTokens.take(0, token);
+            _map->putRaceTokenInRegion(regionVertex, std::move(token));
+        }
+
+    } while (!isDone);
+
+
+
+
+
+}
+
+void Player::giveBackRaceToken(std::unique_ptr<RaceToken> &&token)
+{
+    _raceTokens.place_back(std::move(token));
+}
+
+int Player::numTokensRequiredToConquer(const Vertex &v)
+{
+    int num = 2;
+
+    VertexDataPropertyMap dataMap = boost::get(vertex_data, *_map->getGraph());
+
+    //Has a token (mountain)
+    if (dataMap[v]._token != nullptr)
+    {
+        ++num;
+    }
+
+    //Cavern power
+    if (_currentSpecialPower->kind == ESpecialPower::UNDERWORLD && dataMap[v].hasFeature(RegionFeature::CAVERN))
+    {
+        --num;
+    }
+
+    //Mounted power
+    if (_currentSpecialPower->kind == ESpecialPower::MOUNTED
+        && (dataMap[v]._type == RegionType::HILL
+        || dataMap[v]._type == RegionType::FARM))
+    {
+        --num;
+    }
+
+    //Commando power
+    if (_currentSpecialPower->kind == ESpecialPower::COMMANDO)
+    {
+        --num;
+    }
+
+    //Berserk power
+    if (_currentSpecialPower->kind == ESpecialPower::BERSERK)
+    {
+        std::cout << "BERSERK: Do you want to roll the dice? Select 0 for no and 1 for yes" << std::endl;
+        unsigned int selection = getUserInput<0>(1);
+        if (selection == 1)
+        {
+            unsigned int diceVal = _dice.getDiceValue(1)[0];
+            std::cout << "Got value " << diceVal << std::endl;
+            num -= diceVal;
+        }
+
+    }
+
+    //Minumum of 1
+    if (num < 1)
+    {
+        num = 1;
+    }
+
+    return num;
+}
+
+void Player::redeploy()
+{
+
+    //TODO: Take tokens
+    unsigned int numTokenTaken = 0;
+
+    redeploy(numTokenTaken);
+}
