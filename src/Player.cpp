@@ -113,9 +113,6 @@ void Player::picks_race(TokenVec<RaceBanner>&               banners,
             _currentRace = std::move(banner);
             _currentSpecialPower = std::move(power);
 
-            std::cout << "race: " << _currentRace->value << std::endl;
-            std::cout << "power: " << _currentSpecialPower->value << std::endl;
-
             assert(_currentRace != nullptr);
             assert(_currentSpecialPower != nullptr);
 
@@ -141,8 +138,6 @@ void Player::picks_race(TokenVec<RaceBanner>&               banners,
             coins.push_back(std::move(coin3));
         }
 
-        std::cout << "HIT" << std::endl;
-
         assert(_currentRace != nullptr);
         assert(_currentSpecialPower != nullptr);
 
@@ -152,7 +147,6 @@ void Player::picks_race(TokenVec<RaceBanner>&               banners,
         unsigned int numRaceTokens = _currentRace->value + _currentSpecialPower->value;
         ERaceToken tokenType = raceBannerToRaceTokenType(_currentRace->kind);
 
-        std::cout << "HEY! " << numRaceTokens << std::endl;
         for (unsigned int i = 0; i < numRaceTokens; ++i)
         {
             std::unique_ptr<RaceToken> token;
@@ -376,7 +370,7 @@ void Player::redeploy(unsigned int count)
         Vertex regionVertex;
         _map->findVertex(selection, regionVertex);
 
-        if (_map->currentRegionOwner(regionVertex) != _playerID)
+        if (_map->currentRegionOwner(regionVertex) != _playerID && _map->currentRegionOwner(regionVertex) != -1)
         {
             std::cout << "You do not own this region!!" << std::endl;
             isDone = false;

@@ -50,12 +50,8 @@ void eraseAndShrink(std::vector<Type>& vec, unsigned int index)
 template <typename TokenType>
 void moveOutToken(std::unique_ptr<TokenType>& val, std::vector<std::unique_ptr<TokenType>>& vec, unsigned int index)
 {
-    std::cout << "vec: " << vec[index]->value << std::endl;
-
     //Move out
     val = std::move(vec[index]);
-
-    std::cout << "token: " << val->value << std::endl;
 
     //Shrink
     eraseAndShrink(vec, index);
