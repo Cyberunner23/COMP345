@@ -24,11 +24,16 @@ public:
     GraphView();
 
 public slots:
+
+    //! Qt slot that updates the UI
     void updateGraph(Map* map,
                      const TokenVec<RaceBanner> *selectionRaceBanners,
                      const TokenStack<RaceBanner> *remainingRaceBanners,
                      const TokenVec<SpecialPower> *selectionSpecialPowers,
                      const TokenStack<SpecialPower> *remainingSpecialPowers);
+
+    //! Qt slot that closes the game through the Ctrl+Q keybinding
+    // TODO: fix the crash on shutdown
     void exit();
 
 private:

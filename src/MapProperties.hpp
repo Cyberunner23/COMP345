@@ -9,6 +9,7 @@ struct MapProperties
     friend inline std::ostream &operator<<(std::ostream &oStream, const MapProperties &regionNode);
     friend inline std::istream &operator>>(std::istream &iStream, MapProperties &regionNode);
 
+    //!Some properties for the graph itself
     unsigned int numPlayers;
     unsigned int numTurns;
     unsigned int currentTurn;

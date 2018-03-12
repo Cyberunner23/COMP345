@@ -38,10 +38,12 @@ public:
         _players = std::make_shared<std::vector<std::shared_ptr<Player>>>();
     }
 
+    //! Override for the QThread run function
     void run();
 
 signals:
 
+    //! Qt signal that sends a update UI event to the GraphView
     void updateUI(Map *map,
                   const TokenVec<RaceBanner> *selectionRaceBanners,
                   const TokenStack<RaceBanner> *remainingRaceBanners,
@@ -65,12 +67,22 @@ private:
 
     TokenVec<VictoryCoin> _coinStash;
 
+    //! Sets up the gae board
     void setup();
+
+    //! Starts the game
     void startup();
+
+    //! Setup turn for the players
     void playerSetupTurn(std::shared_ptr<Player> player);
+
+    //!Remaing turns for the players
     void playerTurn(std::shared_ptr<Player> player);
+
+    //!Shows who won the game
     void showWinner();
 
+    //!Gets a list of files available in a directory, used to enumerate map files
     std::vector<std::string> getFileList(std::string directory, std::string ext);
 
 };

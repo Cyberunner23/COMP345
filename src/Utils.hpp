@@ -6,6 +6,8 @@
 #include <stack>
 #include <vector>
 
+
+//! Gets user input in numerical form.
 template<const int minVal>
 int getUserInput(int maxVal)
 {
@@ -37,13 +39,6 @@ int getUserInput(int maxVal)
     return selection;
 }
 
-
-template <typename TokenType>
-void stackRealPop(std::stack<std::unique_ptr<TokenType>>& stack, std::unique_ptr<TokenType>& value)
-{
-    value = std::move(stack.top());
-    stack.pop();
-}
 
 template <typename Type>
 void eraseAndShrink(std::vector<Type>& vec, unsigned int index)

@@ -77,8 +77,6 @@ set(SRCS
     src/DiceRollingFacility.cpp
     src/Game.hpp
     src/Game.cpp
-    src/GameDeck.hpp
-    src/GameDeck.cpp
     src/GraphView.hpp
     src/GraphView.cpp
     src/Map.hpp
@@ -87,6 +85,7 @@ set(SRCS
     src/Player.hpp
     src/Player.cpp
     src/RegionNode.hpp
+    src/Utils.hpp
     src/Tokens/EMapToken.hpp
     src/Tokens/ERaceBanner.hpp
     src/Tokens/ERaceToken.hpp

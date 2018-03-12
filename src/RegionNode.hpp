@@ -127,11 +127,13 @@ struct RegionNode
             , ownerID(-1)
     {}
 
+    //! Sets the vertex index, mirrors the value in BGL
     void setVertexID(int index)
     {
         _vertexIndex = index;
     }
 
+    //! Helper to know if the region has a certain modifier
     bool hasFeature(RegionFeature feature)
     {
         auto it = std::find(_features.begin(), _features.end(), feature);
@@ -152,6 +154,7 @@ private:
         ar & boost::serialization::make_nvp("IsEdge", _isEdge);
     }
 
+    //! Stringification for RegionType
     std::string regionTypeStr(RegionType regionType)
     {
         switch (regionType)
@@ -171,6 +174,7 @@ private:
         }
     }
 
+    //! Stringification for RegionFeature
     std::string regionFeatureStr(RegionFeature regionFeature)
     {
         switch (regionFeature)

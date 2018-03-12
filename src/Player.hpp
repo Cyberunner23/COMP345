@@ -70,11 +70,17 @@ public:
     //! Gets the user's score.
     void scores();
 
+    //! Redeploy when conquered
     void redeploy(unsigned int count);
+
+    //! redeploy after conquer phase
     void redeploy();
 
+
+    //! Gives back tokens to the player when conquered
     void giveBackRaceToken(std::unique_ptr<RaceToken> && token);
 
+    //! Computes how many tokens are required to conquer the region, includes special power modifiers
     int numTokensRequiredToConquer(const Vertex& v);
 
 

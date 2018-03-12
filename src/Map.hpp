@@ -214,8 +214,11 @@ public:
     bool isConnected(SGraph &subGraph);
 
 
+    //! Updates the vertex displaytxt property for all nodes in the map
     void updateNodeDisplayText();
 
+    //! Functoins got getting various info for a RegionNode from a BGL Vertex.
+    //NOTE: Should probably move this somewhere else...
     bool findVertex(int index, Vertex& vertex);
     bool isRegionOnEdge(const Vertex& vertex);
     bool isRegionConnectedToSea(const Vertex& vertex);
